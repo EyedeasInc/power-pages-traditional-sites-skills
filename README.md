@@ -1,4 +1,4 @@
-# Power Pages Traditional-site toolkit (Claude Code plugin)
+# Power Pages Traditional-site toolkit
 
 Skills for building, editing, integrating, and **securing** traditional **Power Pages** sites —
 the Dataverse-backed Studio/Liquid sites on the **enhanced data model** (`mspp_*` tables +
