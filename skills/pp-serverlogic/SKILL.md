@@ -1,5 +1,5 @@
 ---
-name: pp-server-logic
+name: pp-serverlogic
 description: "Create, edit, deploy, and remove server logic — server-side JavaScript that runs securely on the Power Pages runtime — on a traditional (enhanced-data-model, mspp_*) site through the powerpagecomponent storage model. A server logic is TWO powerpagecomponent rows: a type-35 METADATA record and a type-15 CODE record whose content is JSON {\"source\": \"<js>\", \"webroles\": [...]}. WHEN: add, create, edit, or update server logic, deploy server-side JavaScript, create or change a Power Pages server script, add an API endpoint on the portal, push server logic, change the web roles on a server script, delete server logic, move browser code to the server, run code securely on the runtime, create a server-side handler."
 license: MIT
 metadata:

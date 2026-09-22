@@ -16,8 +16,8 @@ converting a trial to production, changing visibility, and deleting.
 
 > **Division of labour.** `pac power-pages` operates on the **website** (provision, run,
 > secure, delete). The page/template/web-file/Liquid **content** inside a site is authored
-> with the other skills in this plugin (`pp-webpage`, `pp-web-template`, `pp-web-file`,
-> `pp-server-logic`, `pp-liquid`) by writing `mspp_*` / `powerpagecomponent` rows directly.
+> with the other skills in this plugin (`pp-webpage`, `pp-webtemplate`, `pp-webfile`,
+> `pp-serverlogic`, `pp-liquid`) by writing `mspp_*` / `powerpagecomponent` rows directly.
 > Use this skill to stand a site up or manage its lifecycle; use those to build what's in it.
 
 > ⚠️ **Preview.** Every `pac power-pages` command is Preview and its surface can change.
@@ -116,7 +116,7 @@ pac power-pages update-portal-security-group   --id <SITEID> --security-group-id
 
 Site visibility gates whether the site is reachable at all; the security group restricts who
 in the tenant can see it. (Per-page and per-table access *inside* the site is the job of web
-roles + `pp-table-permissions`, not these commands.)
+roles + `pp-tablepermission`, not these commands.)
 
 ## Data-model / bootstrap stamps
 
@@ -144,7 +144,7 @@ the website does not, on its own, clean up the `mspp_*` content records the site
 Not core lifecycle, but in `pac power-pages` when you need them — see the CLI reference:
 
 - **Security scans:** `start-quick-scan`, `start-deep-scan`, `get-security-scan-report`,
-  `get-security-scan-score` → folded into the **`pp-security-review`** skill.
+  `get-security-scan-score` → folded into the **`pp-securityreview`** skill.
 - **Firewall / network:** `enable-waf` / `disable-waf` / `get-waf-status` / `get-waf-rules` /
   `create-waf-rules` / `update-waf-policy-settings`, and the IP allow-list
   (`get`/`add`/`remove-allowed-ip-addresses`).

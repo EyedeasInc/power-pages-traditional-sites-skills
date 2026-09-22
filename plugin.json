@@ -1,7 +1,7 @@
 {
   "name": "powerpages-traditional-site",
-  "description": "Power Pages Traditional (non-code) site toolkit — noun-named pp-* skills for provisioning, building, editing, integrating, and securing Power Pages sites on the enhanced Dataverse data model (mspp_* tables + powerpagecomponent): website lifecycle via the pac power-pages CLI, web pages, web templates, web files, server logic, Liquid, Web API, table permissions, security review (with pac power-pages scans), and cache flush. The traditional-site counterpart to Microsoft's code-site plugin.",
-  "version": "0.3.0",
+  "description": "Power Pages Traditional (non-code) site toolkit — noun-named pp-* skills for provisioning, building, editing, integrating, and securing Power Pages sites on the enhanced Dataverse data model (mspp_* tables + powerpagecomponent). Content via the Dataverse Web API: web pages, web templates, web files, content snippets, web link navigation, server logic, Liquid, Web API, web roles, table permissions, security headers/CSP, security review. Site & platform lifecycle via the pac pages / pac power-pages CLI: website provisioning, standard→enhanced data-model migration, download/upload (ALM), Bootstrap 3→5 migration, WAF/firewall, and cache flush. The traditional-site counterpart to Microsoft's code-site plugin.",
+  "version": "0.4.0",
   "author": {
     "name": "Victor Dantas"
   },
@@ -12,8 +12,14 @@
     "non-code",
     "enhanced data model",
     "pac power-pages",
+    "pac pages",
     "website lifecycle",
+    "data model migration",
+    "bootstrap migration",
+    "content snippet",
+    "web link",
     "waf",
+    "csp",
     "dataverse",
     "mspp",
     "powerpagecomponent",

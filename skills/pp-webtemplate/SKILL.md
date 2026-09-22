@@ -1,5 +1,5 @@
 ---
-name: pp-web-template
+name: pp-webtemplate
 description: "Create, edit, read, and delete web templates (powerpagecomponent type 8, content = {\"source\"}) on a traditional (enhanced-data-model, mspp_*) Power Pages site by patching the LIVE component through the Dataverse Web API — GET live, robust-parse the content JSON, match-once-guarded edit, PATCH one component (never a batch upload). WHEN: create a web template, add a new template, edit a web template, change portal HTML/Liquid, update or patch web template source, read a template source, delete a web template, list a site web templates, fix portal markup, modify a liquid template, tweak rendered output, apply a code fix to an mspp_ web template."
 license: MIT
 metadata:

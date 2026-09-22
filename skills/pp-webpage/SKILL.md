@@ -106,6 +106,11 @@ site's existing CSS classes; don't inline styles if the site keeps CSS in a them
 
 ## Step 4 — Add it to navigation
 
+> For nav beyond one link — reordering, dropdowns/sub-menus, a separate footer
+> menu, external links — use the **`pp-weblink`** skill (web link sets & links). This step
+> just drops the new page into the primary set.
+
+
 **Non-code site (standard navigation = Web Link Set).** The page template's header renders a
 **web link set**. Add a `mspp_weblink` pointing at the new page:
 

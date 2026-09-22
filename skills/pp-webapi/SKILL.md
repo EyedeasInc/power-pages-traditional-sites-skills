@@ -174,7 +174,7 @@ for PATCH, Delete for DELETE) and a scope (Global / Contact / Account / Self…)
 - Anonymous pages need the permission bound to the **Anonymous Users** web role; authenticated pages
   to **Authenticated Users** (or a custom role).
 
-Set these up with the **pp-table-permissions** workflow — enabling the Web API is orthogonal to it, and
+Set these up with the **pp-tablepermission** workflow — enabling the Web API is orthogonal to it, and
 you almost always need both. If a page "silently returns nothing," check the table permission and its
 web-role binding **before** re-checking the site settings.
 

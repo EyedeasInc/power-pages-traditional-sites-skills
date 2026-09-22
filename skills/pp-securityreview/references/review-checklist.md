@@ -142,7 +142,7 @@ that no sensitive permission resolves to the Anonymous role (feeds §4).
 
 **Fix.** Narrow `mspp_scope` to the least that works (Contact/Account over Global); strip
 unneeded CRUD flags; repair or add the parent permission; unbind roles that shouldn't have
-the grant. Apply via the pp-table-permissions config path — do not batch-upload the site.
+the grant. Apply via the pp-tablepermission config path — do not batch-upload the site.
 
 ---
 
@@ -187,7 +187,7 @@ GET /api/data/v9.2/mspp_sitesettings?$filter=_mspp_websiteid_value eq <SITEID>
 
 **Fix.** Set a restrictive CSP: avoid `unsafe-inline`/`unsafe-eval` for `script-src`; move
 inline scripts to web files or gate them with nonces/hashes; set `frame-ancestors`. Add
-`X-Content-Type-Options: nosniff`, `X-Frame-Options`, and HSTS. Use the `manage-headers`
+`X-Content-Type-Options: nosniff`, `X-Frame-Options`, and HSTS. Use the `pp-headers`
 config path. Re-fetch the live headers to confirm they're applied (flush cache first).
 
 ---
@@ -229,7 +229,7 @@ rg -ni "api[_-]?key|secret|bearer |authorization:|AccountKey=|client_secret|\?co
       downloads is public.
 
 **Fix.** Remove the secret from client-served content. Move the privileged call **server-side**
-— Power Pages **server logic** (see `pp-server-logic`) or a cloud flow behind the Web API —
+— Power Pages **server logic** (see `pp-serverlogic`) or a cloud flow behind the Web API —
 so the secret never reaches the browser. **Rotate** the exposed credential immediately; treat
 any secret that shipped to the browser as compromised.
 

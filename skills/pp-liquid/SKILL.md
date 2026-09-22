@@ -139,7 +139,7 @@ element bodies:
 
 Prefer `textContent` / `setAttribute` where you can — they don't parse HTML at all. When you must
 build an `innerHTML` string, wrap **every** dynamic piece in `escapeHtml()`. See the
-**`pp-security-review`** skill for the full portal XSS checklist, and **`pp-webapi`** for the
+**`pp-securityreview`** skill for the full portal XSS checklist, and **`pp-webapi`** for the
 data-fetch side.
 
 ## 4 — Calling the Web API from a Liquid page

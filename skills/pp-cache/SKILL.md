@@ -19,8 +19,8 @@ See `references/traditional-site-editing-model.md` for the editing model these c
 
 ## When you need it
 
-After any of: `pp-web-template`, `pp-web-file` (also needs a URL cache-buster — see that
-skill), `pp-server-logic`, `pp-webapi` (site settings), `pp-table-permissions`, `pp-webpage`
+After any of: `pp-webtemplate`, `pp-webfile` (also needs a URL cache-buster — see that
+skill), `pp-serverlogic`, `pp-webapi` (site settings), `pp-tablepermission`, `pp-webpage`
 (`mspp_copy` PUTs do **not** auto-bust), or editing content snippets / site settings.
 
 ## How to flush
@@ -47,7 +47,7 @@ This is the reliable fallback when `/_services/about` isn't reachable from your 
 ### 3. Browser hard-refresh (client cache only)
 For **web files** (CSS/JS), the *browser* also caches by URL. Even after a server flush, a client
 may hold the old file. Bump the `?v=` cache-buster where the file is referenced (see
-`pp-web-file`) so clients refetch — a server flush alone won't force that.
+`pp-webfile`) so clients refetch — a server flush alone won't force that.
 
 ## Bundled helper
 
