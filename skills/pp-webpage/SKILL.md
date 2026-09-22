@@ -39,7 +39,11 @@ GET /api/data/v9.2/mspp_webpages?$filter=_mspp_websiteid_value eq <SITEID> and m
 
 Record these IDs:
 - **website** `_mspp_websiteid_value`
-- **page template** `_mspp_pagetemplateid_value` (entity set `mspp_pagetemplates`)
+- **page template** `_mspp_pagetemplateid_value` (entity set `mspp_pagetemplates`) — the link to
+  the **web-template layout** the page renders in. A page **can't exist without one**. Reusing an
+  existing page's template is easiest; to give the page a **new** layout choice (a landing page,
+  a full-width or sidebar-less template), create the page template first with **`pp-pagetemplate`**
+  (which in turn points at a `pp-webtemplate` layout).
 - **parent page** `_mspp_parentpageid_value` — usually the site **Home** root page (entity set `mspp_webpages`)
 - **publishing state** `_mspp_publishingstateid_value` — the **Published** state (entity set `mspp_publishingstates`; confirm with `?$filter=mspp_name eq 'Published'`)
 - **language** `_mspp_webpagelanguageid_value` — e.g. en-US (entity set `mspp_websitelanguages`)
@@ -158,8 +162,9 @@ pattern), otherwise reads a bearer token from the `DATAVERSE_TOKEN` env var.
 
 ## Field & option reference
 
-- Tables: `mspp_webpage`, `mspp_pagetemplate`, `mspp_publishingstate`, `mspp_websitelanguage`,
-  `mspp_website`, `mspp_weblinkset`, `mspp_weblink` (enhanced data model — `mspp_*`, **not** `adx_*`).
+- Tables: `mspp_webpage`, `mspp_pagetemplate` (manage with `pp-pagetemplate`), `mspp_publishingstate`,
+  `mspp_websitelanguage`, `mspp_website`, `mspp_weblinkset`, `mspp_weblink` (enhanced data model —
+  `mspp_*`, **not** `adx_*`).
 - Key `mspp_webpage` columns: `mspp_name`, `mspp_title`, `mspp_partialurl`, `mspp_isroot`,
   `mspp_copy`, `mspp_displayorder`, and the lookups in Steps 2–3.
 - Always operate per **website** (`_mspp_websiteid_value`) — a tenant can host several sites.
