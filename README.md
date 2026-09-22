@@ -45,9 +45,9 @@ word (`/pp-webtemplate`); action/CLI skills keep a hyphen (`/pp-datamodel-migrat
 
 | Skill | What it does |
 |---|---|
-| **`/pp-basicform`** | Basic forms (`mspp_entityform`) — a single-record create/edit/read form on a page, plus per-field overrides. |
-| **`/pp-list`** | Lists (`mspp_entitylist`) — a configurable grid of Dataverse records from saved views, with search/paging/actions. |
-| **`/pp-multistepform`** | Multistep forms (`mspp_webform` + steps) — wizards with per-step forms and conditional navigation. |
+| **`/pp-basicform`** | Basic forms (`mspp_entityform`) — insert/edit/read-only record forms: record source, on-success/redirect, file upload, record actions, per-field metadata, custom JS, AI form-fill. |
+| **`/pp-list`** | Lists (`mspp_entitylist`) — record grids from saved views: toolbar/row actions, my/account filters, map/calendar/modern views, search, and AI natural-language search + list summary. |
+| **`/pp-multistepform`** | Multistep forms (`mspp_webform` + steps) — wizards: step types & branching, progress indicator, per-field metadata, session/edit-expiry, custom JS. |
 | **`/pp-webapi`** | Enable, consume, audit, and disable the Power Pages Web API (`/_api/*`) for a table. |
 
 ### Access & security
