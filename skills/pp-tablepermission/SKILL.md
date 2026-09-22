@@ -1,5 +1,5 @@
 ---
-name: table-permissions
+name: pp-table-permissions
 description: "Configure table permissions (mspp_entitypermission) on a traditional (enhanced-data-model, mspp_*) Power Pages site and bind them to web roles so portal users can read/write Dataverse records. A permission grants CRUD scope on a table; it does NOTHING until it is bound to a web role via the mspp_entitypermission_webrole many-to-many intersect. WHEN: set up table permissions, grant portal CRUD access, bind a permission to a web role, fix portal 403/empty data, configure entity permission, verify web role bindings, give a web role read/create/write/delete on a table, scope records to the signed-in contact."
 license: MIT
 metadata:
@@ -161,7 +161,7 @@ child permission and `appendto` on the parent permission.
 ## How this interacts with the Web API
 
 The portal **Web API** (`/_api/...`) enforces exactly these table permissions and web-role
-bindings — it is not a separate access system. If `integrate-webapi` calls return 403 or empty,
+bindings — it is not a separate access system. If `pp-webapi` calls return 403 or empty,
 the fix is here: the calling user's web role needs a bound permission with the right scope and
 flag (read for GET, create for POST, write for PATCH, delete for DELETE). The `Webapi/<table>/*`
 **site settings** only expose the table to the API surface; they do **not** grant access — the

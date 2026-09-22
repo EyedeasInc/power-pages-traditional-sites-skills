@@ -1,6 +1,6 @@
 ---
-name: security-review
-description: "Run a security review of a traditional (enhanced-data-model, mspp_*) Power Pages site, focused on the failure modes specific to this platform rather than generic web scanning — stored XSS in web templates and page JS that interpolates Dataverse fields raw, Web API column over-exposure, missing or over-broad table permissions, accidental anonymous access, weak security headers/CSP, Liquid data leaks, and secrets served to the browser. Produces a fill-in findings report. WHEN: security review a Power Pages site, audit portal security, check for portal XSS, review table permissions, find data exposure, portal security checklist, portal security audit, harden a Power Pages site, review web templates for XSS, check Web API exposure, review anonymous access, check CSP/security headers on a portal."
+name: pp-security-review
+description: "Run a security review of a traditional (enhanced-data-model, mspp_*) Power Pages site, focused on the failure modes specific to this platform rather than generic web scanning — stored XSS in web templates and page JS that interpolates Dataverse fields raw, Web API column over-exposure, missing or over-broad table permissions, accidental anonymous access, weak security headers/CSP, Liquid data leaks, and secrets served to the browser. Produces a fill-in findings report. WHEN: security review a Power Pages site, audit portal security, check for portal XSS, review table permissions, find data exposure, portal security checklist, portal security audit, harden a Power Pages site, review web templates for XSS, check Web API exposure, review anonymous access, check CSP/security headers on a portal, run the platform security scan, start a quick or deep scan, get the security scan report or score, check or enable the Web Application Firewall (WAF)."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -24,7 +24,7 @@ severity, and a fix. Record findings in the report format at the end of this fil
 > components from Dataverse — a local `src-control` / `pac pages download` folder is a
 > **stale snapshot** and will hide a vulnerability that was introduced in Studio. Only
 > remediate after the finding is confirmed and the owner approves; remediation follows the
-> `edit-web-template` / `integrate-webapi` skills (patch the single live component, then
+> `pp-web-template` / `pp-webapi` skills (patch the single live component, then
 > flush cache).
 
 ## Scope the review (do this first)
@@ -41,6 +41,33 @@ Then enumerate the surfaces you'll inspect: web templates (`powerpagecomponent`
 `powerpagecomponenttype = 8`), web files with JS (type 3), site settings
 (`mspp_sitesetting`), web pages (`mspp_webpage`), web roles (`mspp_webrole`), table
 permissions (`mspp_entitypermission`), and content snippets (`mspp_contentsnippet`).
+
+## Step 0 — Run the platform's own scan first (`pac power-pages`)
+
+Before the manual checks, let the platform scan itself — it's free signal and it costs one
+command. The `pac power-pages` command group (Preview) runs Microsoft's built-in Power Pages
+security scanner and returns a score plus a report. Authenticate once with `pac auth create`
+(or reuse the active profile), then, scoped by the **website id** (`get-websites` lists them):
+
+```
+pac power-pages get-websites                              # find the site --id (website GUID)
+pac power-pages start-quick-scan   --id <SITEID>          # fast checks
+pac power-pages start-deep-scan    --id <SITEID>          # thorough, slower — run and come back
+pac power-pages get-security-scan-score  --id <SITEID>    # single number to track over time
+pac power-pages get-security-scan-report --id <SITEID>    # the detailed findings
+```
+
+Treat the scan as **complementary, not a substitute**: it catches configuration/header/WAF
+issues the platform knows about, but it does **not** see the platform-specific application
+flaws below — stored XSS from raw Dataverse interpolation, Web API `*` over-exposure, blind
+table-permission gaps, or Liquid `nil != blank` leaks. Fold the scan's findings into the
+same report, then work the seven checks for everything the scanner can't reach.
+
+> **Web Application Firewall (WAF) & IP allow-list** are remediation levers in the same
+> command group: `get-waf-status` / `get-waf-rules` / `enable-waf` / `update-waf-policy-settings`
+> (Prevention vs Detection mode), and `get-allowed-ip-addresses` / `add-allowed-ip-addresses`
+> to restrict who can reach the site. These are defense-in-depth on top of fixing the app
+> itself — a WAF in front of an unescaped sink is not a substitute for escaping it.
 
 ## The seven checks
 
@@ -105,7 +132,7 @@ GET /api/data/v9.2/mspp_sitesettings?$filter=_mspp_websiteid_value eq <SITEID>
 ```
 
 **How to fix.** Replace `*` with the explicit least-field list the front-end actually reads.
-Cross-ref the `integrate-webapi` skill for the correct `Webapi/<table>/enabled` +
+Cross-ref the `pp-webapi` skill for the correct `Webapi/<table>/enabled` +
 `Webapi/<table>/fields` shape.
 
 ### 3. Table-permission gaps / over-broad scope
@@ -122,7 +149,7 @@ will make an over-broad grant look empty. See the checklist for the exact inters
 
 **How to fix.** Tighten scope to the narrowest that still works (Contact/Account over
 Global), remove CRUD rights the role doesn't need, add the missing parent-scope permissions
-that a Contact/Account scope depends on. Cross-ref the table-permissions guidance.
+that a Contact/Account scope depends on. Cross-ref the pp-table-permissions guidance.
 
 ### 4. Anonymous access
 
@@ -168,7 +195,7 @@ gated and that emptiness tests use `.size` or `{% unless %}` — **never** `== b
 
 **How to fix.** Gate the query behind the right web role/table permission; replace
 `!= blank` / `== blank` with `.size > 0` / `{% unless result.size > 0 %}`. Cross-ref the
-write-liquid guidance.
+pp-liquid guidance.
 
 ### 7. Secrets served to the browser
 
@@ -205,10 +232,10 @@ remediated.
 
 Fixes are single-component live patches, not a site re-upload:
 
-- **XSS / Liquid / secret in a web template** → `edit-web-template` (GET live `source`,
+- **XSS / Liquid / secret in a web template** → `pp-web-template` (GET live `source`,
   apply the escape/gate/removal with a match-once guard, PATCH, flush cache).
 - **Web API fields / anonymous / table permissions / headers** → the corresponding config
-  skill (`integrate-webapi`, table-permissions, `manage-headers`) — never batch-upload the
+  skill (`pp-webapi`, pp-table-permissions, `manage-headers`) — never batch-upload the
   whole site to push one setting.
 - Re-run the relevant checklist item after each fix to confirm the finding is closed, then
   flush the portal cache and re-test as an anonymous and as an authenticated user.

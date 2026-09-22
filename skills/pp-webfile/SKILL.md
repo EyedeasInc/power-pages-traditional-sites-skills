@@ -1,13 +1,13 @@
 ---
-name: manage-web-files
-description: "Update the BYTES of a web file (CSS, JS, image, or any binary) on an enhanced-data-model Power Pages site by PATCHing the powerpagecomponent File column directly — then bump a cache-buster so browsers refetch. A web file is a powerpagecomponent type 3; its bytes live in the filecontent File column, NOT in the content {\"source\"} JSON that web templates (type 8) use. WHEN: update portal CSS, change a web file, replace a JS file, update a stylesheet, upload an image to the portal, bump CSS cache, fix web file, swap a favicon, refresh a theme asset, patch filecontent."
+name: pp-web-file
+description: "Create, update, replace, and delete web files (CSS, JS, images, or any binary) on an enhanced-data-model (mspp_*) Power Pages site by writing the powerpagecomponent File column directly — then bump a cache-buster so browsers refetch. A web file is a powerpagecomponent type 3; its bytes live in the filecontent File column, NOT in the content {\"source\"} JSON that web templates (type 8) use. WHEN: add or create a web file, update portal CSS, change or replace a web file, replace a JS file, update a stylesheet, upload an image to the portal, bump CSS cache, delete a web file, fix web file, swap a favicon, refresh a theme asset, patch filecontent."
 license: MIT
 metadata:
   author: Victor Dantas
   version: "0.1.0"
 ---
 
-# Manage web files (CSS / JS / images / binaries) on a Power Pages site
+# Web files (CSS / JS / images / binaries) on a Power Pages site — create, update, delete
 
 Update the actual **bytes** of a web file on an **enhanced-data-model** Power Pages site by
 PATCHing the file through the Dataverse Web API — no whole-site upload, no Studio round-trip.
@@ -118,12 +118,12 @@ Two caches sit in front of a web file. Updating the bytes invalidates neither au
      ```
      then read each template's `content` `{"source"}` and grep for `<name.css>`.
    - Bump the `?v=` token (e.g. `?v=7` → `?v=8`) and PATCH that web template's `source` back.
-     Editing a web template is the **edit-web-template** skill — use it for the source-JSON
+     Editing a web template is the **pp-web-template** skill — use it for the source-JSON
      mechanics (parse `content` directly, match-once guard, `{"source"}` shape).
    - No `?v=` present? Add one, or reference the file's `modifiedon` as the token, so future
      updates are bustable.
 2. **The portal server cache.** Even with a fresh URL, the portal serves components from its own
-   cache. Flush it after the write — the **flush-cache** skill (open `/_services/about` →
+   cache. Flush it after the write — the **pp-cache** skill (open `/_services/about` →
    **Clear cache**). Do this last, after both the bytes and any web-template bump are saved.
 
 ## Step 5 — Verify
@@ -156,7 +156,7 @@ python scripts/update_web_file.py --url <DATAVERSE_URL> \
   PATCHing.
 - `--bump-template <name>` finds the named type-8 web template, increments the `?v=N` next to the
   file reference in its `source`, and PATCHes the template (match-once guarded). Omit it to bump
-  the cache-buster by hand via the edit-web-template skill.
+  the cache-buster by hand via the pp-web-template skill.
 - Auth: imports `get_token` from a workspace `scripts/auth.py` if present (the dv-connect
   pattern), else reads a bearer token from `DATAVERSE_TOKEN`. `DATAVERSE_URL` from `--url` or the
   env var.
@@ -171,5 +171,5 @@ python scripts/update_web_file.py --url <DATAVERSE_URL> \
   `x-ms-file-content-type`. Byte PATCH target is `.../powerpagecomponents(<id>)/filecontent`.
 - One component per PATCH. **Never** `pac pages upload` a whole site to push one file — it can
   clobber live Studio edits.
-- Cross-reference: **edit-web-template** (bump the `?v=` reference), **flush-cache** (invalidate
+- Cross-reference: **pp-web-template** (bump the `?v=` reference), **pp-cache** (invalidate
   the portal cache after the write).

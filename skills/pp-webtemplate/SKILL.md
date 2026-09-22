@@ -1,13 +1,13 @@
 ---
-name: edit-web-template
-description: "Safely edit a web template (powerpagecomponent type 8) on a traditional Power Pages site by patching its live Liquid/HTML source through the Dataverse Web API — GET the live component, parse its content JSON robustly, apply a match-once string/regex edit to the source, and PATCH just that one component (never a batch upload). WHEN: edit a web template, change portal HTML/Liquid, update a Power Pages template, patch web template source, fix portal markup, modify a liquid template, tweak a template's rendered output, apply a code fix to a mspp_ web template."
+name: pp-web-template
+description: "Create, edit, read, and delete web templates (powerpagecomponent type 8, content = {\"source\"}) on a traditional (enhanced-data-model, mspp_*) Power Pages site by patching the LIVE component through the Dataverse Web API — GET live, robust-parse the content JSON, match-once-guarded edit, PATCH one component (never a batch upload). WHEN: create a web template, add a new template, edit a web template, change portal HTML/Liquid, update or patch web template source, read a template source, delete a web template, list a site web templates, fix portal markup, modify a liquid template, tweak rendered output, apply a code fix to an mspp_ web template."
 license: MIT
 metadata:
   author: Victor Dantas
   version: "0.1.0"
 ---
 
-# Edit a web template on a Power Pages site
+# Web templates on a Power Pages site — create, edit, delete
 
 Change the Liquid/HTML **source** of a web template on an **enhanced-data-model**
 Power Pages site by patching the single `powerpagecomponent` record directly through the
@@ -110,7 +110,7 @@ In Python: `body = {"content": json.dumps(content)}`. A 204 (or 200) means succe
 ## Step 5 — Flush the cache, then verify
 
 The portal serves web templates from cache; your PATCH will not show until the cache is
-invalidated. Flush it (see the `flush-cache` skill — e.g. open `/_services/about` and click
+invalidated. Flush it (see the `pp-cache` skill — e.g. open `/_services/about` and click
 **Clear cache**), then load a page that renders this template and confirm your change is live and
 the template still renders (a broken Liquid tag surfaces as a render error on the page).
 
@@ -161,4 +161,4 @@ comes from `--url` or the env var of the same name.
 - Scope by site: `_powerpagesiteid_value` on the component — one env can host several sites.
 - Parse rule: `json.loads(raw)` **directly**; `html.unescape` only as a fallback on failure.
 - Safety rules: GET live first (local copies are stale); match-once guard before PATCH; patch the
-  single component (never batch-upload); flush cache after (see `flush-cache`).
+  single component (never batch-upload); flush cache after (see `pp-cache`).

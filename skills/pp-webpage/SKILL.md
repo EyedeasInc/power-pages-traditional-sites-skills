@@ -1,13 +1,13 @@
 ---
-name: add-webpage
-description: "Create a new web page on a Power Pages site and add it to the site navigation, through the Dataverse (mspp_*) data model — no custom code. A Power Pages web page is TWO records: a root web page + one localized content web page per language. WHEN: add a page, create a web page, new web page, add a page to a Power Pages site, add a navigation/menu item, add a nav link, scaffold a page, add a sub page, create webpage records, add page to sitemap."
+name: pp-webpage
+description: "Create, edit, delete, and navigate web pages on a traditional (enhanced-data-model, mspp_*) Power Pages site through the Dataverse model — no custom code. A web page is TWO records: a root mspp_webpage + one localized content mspp_webpage per language; this skill scaffolds new pages (handling the auto-created content page and validation-plugin quirks), edits page body/template/parent/URL/publishing state, wires pages into navigation (web link sets), and removes pages safely. WHEN: add or create a web page, new web page, edit a page, update page content or body, change a page URL/template/parent/publishing state, delete or unpublish a web page, add or reorder a navigation/menu item, add a nav link, scaffold a sub page, manage mspp_webpage records, add a page to the sitemap."
 license: MIT
 metadata:
   author: Victor Dantas
   version: "0.1.0"
 ---
 
-# Add a web page (+ navigation) to a Power Pages site
+# Web pages on a Power Pages site — create, edit, navigate, delete
 
 Create a new web page on an **enhanced-data-model** Power Pages site by writing the
 Dataverse records directly, then surface it in navigation. Works without editing any

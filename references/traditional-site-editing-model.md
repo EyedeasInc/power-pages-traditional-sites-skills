@@ -57,7 +57,7 @@ Always scope by website — `_powerpagesiteid_value` on components, `_mspp_websi
    assert the old fragment matches **exactly once** before writing; abort otherwise. This makes a
    drifted-live-copy fail safely instead of silently mis-patching.
 6. **Cache-flush after content/template changes.** The portal serves components from cache; your
-   PATCH won't show until the cache is invalidated. See the `flush-cache` skill.
+   PATCH won't show until the cache is invalidated. See the `pp-cache` skill.
 
 ## Auth pattern (shared by every bundled script)
 

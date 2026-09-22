@@ -1,5 +1,5 @@
 ---
-name: write-liquid
+name: pp-liquid
 description: "Write correct, safe Liquid in web templates and page content on a traditional (enhanced-data-model, mspp_*) Power Pages site — FetchXML queries, rendering Dataverse data, calling the Web API, and the common Liquid objects. Covers the nil-vs-blank trap that breaks empty-result checks and the escaping needed to stop stored XSS. WHEN: write Liquid, fix Liquid template logic, fetchxml in Power Pages, check if a query returned rows, nil vs blank, render Dataverse data on a portal page, liquid escaping, loop entity results, call the Web API from a Liquid page, entitylist loop, guard an empty FetchXML result."
 license: MIT
 metadata:
@@ -139,7 +139,7 @@ element bodies:
 
 Prefer `textContent` / `setAttribute` where you can — they don't parse HTML at all. When you must
 build an `innerHTML` string, wrap **every** dynamic piece in `escapeHtml()`. See the
-**`security-review`** skill for the full portal XSS checklist, and **`integrate-webapi`** for the
+**`pp-security-review`** skill for the full portal XSS checklist, and **`pp-webapi`** for the
 data-fetch side.
 
 ## 4 — Calling the Web API from a Liquid page
@@ -175,7 +175,7 @@ Hard rules:
   wrapper's request handling — go through `safeAjax`.
 - Web API access must be enabled per table via **site settings** (`Webapi/<table>/enabled`,
   `Webapi/<table>/fields`) and gated by **table permissions**. Enabling the setting without a
-  table permission still returns nothing. See **`integrate-webapi`**.
+  table permission still returns nothing. See **`pp-webapi`**.
 
 ## 5 — Common Liquid objects (practical set)
 

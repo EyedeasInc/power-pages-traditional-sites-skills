@@ -1,5 +1,5 @@
 ---
-name: flush-cache
+name: pp-cache
 description: "Invalidate the Power Pages portal cache so component changes (web templates, web files, content snippets, site settings, table permissions, web pages) become visible. A PATCH to Dataverse updates the record but the running portal keeps serving the cached version until the cache is flushed. WHEN: my change isn't showing on the portal, clear Power Pages cache, flush portal cache, portal still shows old version, invalidate cache, changes not appearing after edit, /_services/about, force portal to refresh."
 license: MIT
 metadata:
@@ -19,8 +19,8 @@ See `references/traditional-site-editing-model.md` for the editing model these c
 
 ## When you need it
 
-After any of: `edit-web-template`, `manage-web-files` (also needs a URL cache-buster — see that
-skill), `add-server-logic`, `integrate-webapi` (site settings), `table-permissions`, `add-webpage`
+After any of: `pp-web-template`, `pp-web-file` (also needs a URL cache-buster — see that
+skill), `pp-server-logic`, `pp-webapi` (site settings), `pp-table-permissions`, `pp-webpage`
 (`mspp_copy` PUTs do **not** auto-bust), or editing content snippets / site settings.
 
 ## How to flush
@@ -47,7 +47,7 @@ This is the reliable fallback when `/_services/about` isn't reachable from your 
 ### 3. Browser hard-refresh (client cache only)
 For **web files** (CSS/JS), the *browser* also caches by URL. Even after a server flush, a client
 may hold the old file. Bump the `?v=` cache-buster where the file is referenced (see
-`manage-web-files`) so clients refetch — a server flush alone won't force that.
+`pp-web-file`) so clients refetch — a server flush alone won't force that.
 
 ## Bundled helper
 

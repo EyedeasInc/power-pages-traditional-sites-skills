@@ -1,13 +1,13 @@
 ---
-name: integrate-webapi
-description: "Enable and safely consume the Power Pages Web API (/_api/*) for a Dataverse table on a traditional (enhanced-data-model, mspp_*) site. Teaches the two Web API site settings (Webapi/<table>/enabled, Webapi/<table>/fields), least-field exposure with case-sensitive column LogicalNames, the mandatory webapi.safeAjax client wrapper (CSRF token), and that table permissions + web roles still gate every call. WHEN: enable the Power Pages Web API, expose a table to the portal /_api, add web api site settings, call Dataverse from a portal page, set Webapi fields, portal ajax to Dataverse, portal CRUD from a page, /_api/file upload, safeAjax, __RequestVerificationToken, why does /_api return nothing or 403."
+name: pp-webapi
+description: "Enable, consume, audit, and disable the Power Pages Web API (/_api/*) for a Dataverse table on a traditional (enhanced-data-model, mspp_*) site. Teaches the two Web API site settings (Webapi/<table>/enabled, Webapi/<table>/fields), least-field exposure with case-sensitive column LogicalNames, the mandatory webapi.safeAjax client wrapper (CSRF token), and that table permissions + web roles still gate every call. WHEN: enable the Power Pages Web API, expose a table to the portal /_api, add or edit web api site settings, audit or reduce Web API exposure, disable the Web API for a table, call Dataverse from a portal page, set Webapi fields, portal ajax to Dataverse, portal CRUD from a page, /_api file upload, safeAjax, __RequestVerificationToken, why does /_api return nothing or 403."
 license: MIT
 metadata:
   author: Victor Dantas
   version: "0.1.0"
 ---
 
-# Enable & consume the Power Pages Web API for a table
+# The Power Pages Web API for a table — enable, consume, audit, disable
 
 The **Power Pages Web API** lets front-end JavaScript on a page read and write Dataverse
 records through same-origin `/_api/*` endpoints — no custom back end. On a **traditional
@@ -174,7 +174,7 @@ for PATCH, Delete for DELETE) and a scope (Global / Contact / Account / Self…)
 - Anonymous pages need the permission bound to the **Anonymous Users** web role; authenticated pages
   to **Authenticated Users** (or a custom role).
 
-Set these up with the **table-permissions** workflow — enabling the Web API is orthogonal to it, and
+Set these up with the **pp-table-permissions** workflow — enabling the Web API is orthogonal to it, and
 you almost always need both. If a page "silently returns nothing," check the table permission and its
 web-role binding **before** re-checking the site settings.
 

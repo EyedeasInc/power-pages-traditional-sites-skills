@@ -110,7 +110,7 @@ GET /api/data/v9.2/mspp_sitesettings?$filter=_mspp_websiteid_value eq <SITEID>
 
 **Fix.** Replace `*` with the explicit least-field list the front-end actually consumes;
 remove sensitive columns; disable the endpoint for tables not used by the portal. Follow the
-`integrate-webapi` skill's `Webapi/<table>/enabled` + `Webapi/<table>/fields` shape. After
+`pp-webapi` skill's `Webapi/<table>/enabled` + `Webapi/<table>/fields` shape. After
 narrowing, re-test the portal feature that reads the table to confirm nothing broke.
 
 ---
@@ -142,7 +142,7 @@ that no sensitive permission resolves to the Anonymous role (feeds §4).
 
 **Fix.** Narrow `mspp_scope` to the least that works (Contact/Account over Global); strip
 unneeded CRUD flags; repair or add the parent permission; unbind roles that shouldn't have
-the grant. Apply via the table-permissions config path — do not batch-upload the site.
+the grant. Apply via the pp-table-permissions config path — do not batch-upload the site.
 
 ---
 
@@ -211,7 +211,7 @@ rg -n "\{% *(fetchxml|entityview|aggregatequery|assign)" <dir>  # ungated querie
 **Fix.** Gate the query/section behind the correct role or table permission. Replace
 emptiness tests on entity results with `.size`: use `{% if result.size > 0 %}` /
 `{% unless result.size > 0 %}` — never `== blank` / `!= blank` for FetchXML results. Follow
-the write-liquid guidance.
+the pp-liquid guidance.
 
 ---
 
@@ -229,7 +229,7 @@ rg -ni "api[_-]?key|secret|bearer |authorization:|AccountKey=|client_secret|\?co
       downloads is public.
 
 **Fix.** Remove the secret from client-served content. Move the privileged call **server-side**
-— Power Pages **server logic** (see `add-server-logic`) or a cloud flow behind the Web API —
+— Power Pages **server logic** (see `pp-server-logic`) or a cloud flow behind the Web API —
 so the secret never reaches the browser. **Rotate** the exposed credential immediately; treat
 any secret that shipped to the browser as compromised.
 
