@@ -52,6 +52,21 @@ pac pages download --path "C:\pp\site" --webSiteId <SITEID> --modelVersion Enhan
   --includeEntities powerpagecomponent
 ```
 
+## Repeatable download (script)
+
+For a scripted, always-identical pull — a scheduled backup, a CI export, or an agent that
+shouldn't hand-assemble flags — `scripts/download_site.py` wraps `pac pages download` with
+argument validation and a clear pass/fail exit. It defaults to `--modelVersion Enhanced` and
+uses the active `pac auth` profile:
+
+```
+python scripts/download_site.py --path "C:\pp\site" --website-id <SITEID> [--overwrite]
+```
+
+It shells out to `pac` (no Dataverse token needed) and exits non-zero if `pac` is missing or the
+download fails — safe to drop into automation. For interactive, one-off pulls, the `pac pages
+download` command above is fine on its own.
+
 ## Clone downloaded content into a new folder
 
 To branch a working copy from content you already downloaded (e.g. before a risky transform):
