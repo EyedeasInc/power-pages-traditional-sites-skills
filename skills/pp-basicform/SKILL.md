@@ -184,3 +184,8 @@ fires, validation and file upload work, and actions respect permissions.
 - Writes gated by table permissions (`pp-tablepermission`) + web roles (`pp-webrole`);
   over-exposed forms are a `pp-securityreview` finding.
 - Auth: Dataverse MCP or a Web API bearer token (`DATAVERSE_TOKEN`), per the shared backbone.
+
+## Microsoft docs & shared references
+
+- From **June 2026**, forms enforce table permissions **regardless of the legacy "Enable Table Permissions" flag** — configure real table permissions + web roles. Client-side Web API save needs a least-privilege `fields` list (see below).
+- Full detail: `references/security-model.md`, `references/webapi-field-configuration.md`.

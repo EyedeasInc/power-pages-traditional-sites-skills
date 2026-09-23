@@ -239,3 +239,9 @@ Fixes are single-component live patches, not a site re-upload:
   whole site to push one setting.
 - Re-run the relevant checklist item after each fix to confirm the finding is closed, then
   flush the portal cache and re-test as an anonymous and as an authenticated user.
+
+## Microsoft docs & shared references
+
+- Model is **deny-by-default**; **Global scope is anonymous-reachable only when bound to the Anonymous Users role**; from **June 2026** forms/lists enforce permissions regardless of the legacy "Enable Table Permissions" flag.
+- For a deep, isolated audit, spawn the **`powerpages-traditional-site:security-auditor`** agent.
+- Full detail: `references/security-model.md`, `references/webapi-field-configuration.md`.

@@ -133,3 +133,8 @@ records the user can **Read** — an empty list is usually a missing **table per
   over a sensitive table is a `pp-securityreview` finding. Create/Edit actions rely on
   `pp-basicform`.
 - Auth: Dataverse MCP or a Web API bearer token (`DATAVERSE_TOKEN`), per the shared backbone.
+
+## Microsoft docs & shared references
+
+- From **June 2026**, lists enforce table permissions regardless of the legacy flag; **list OData feeds are removed by June 2026** — use the Web API. Modern lists support custom JavaScript (v9.8.8.x+).
+- Full detail: `references/security-model.md`, `references/webapi-field-configuration.md`.

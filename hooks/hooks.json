@@ -1,0 +1,18 @@
+{
+  "description": "powerpages-traditional-site: after a content skill, remind about cache flush and table permissions",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/skill_reminder.py"],
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

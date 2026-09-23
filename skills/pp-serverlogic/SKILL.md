@@ -158,3 +158,9 @@ env var. `--dry-run` prints the target and payload without writing.
 - Quirks to remember: (1) parse `content` as JSON directly, never `html.unescape` first;
   (2) preserve `webroles` on every update; (3) no type-15 yet → push via the type-35 `filecontent`
   and let Power Pages create it; (4) clear the cache before verifying.
+
+## Microsoft docs & shared references
+
+- Server logic exposes the **`Server.*`** objects (HttpClient, Dataverse, **CloudFlow.TriggerAsync** to run a Power Automate flow, SiteSetting, EnvironmentVariable, Website, User, Logger, Context).
+- Invoke from a client script (`shell.safeAjax` — `/_api/serverlogics/<name>`) **or** from Liquid (`{% serverlogic %}`). Never store secrets in code (use Key Vault + env vars). The runtime rejects `eval`, `require`, `fetch`, `process.*`, `setTimeout`, `__proto__`, etc.
+- Full detail: `references/server-logic-objects.md`.

@@ -204,3 +204,9 @@ Hard rules:
 4. FetchXML selects only needed columns and is scoped/permitted correctly (table permissions +
    web roles), not just syntactically valid.
 5. You cache-flushed after PATCHing the template/content (see the shared editing-model reference).
+
+## Microsoft docs & shared references
+
+- Pipe nested snippet/site-marker Liquid through **`| liquid`**; mind `forloop.index` (1-based) vs `index0`; escape Dataverse values with `| escape`.
+- Call server logic during render with **`{% serverlogic name:'rec' operation:'fn' input:'..' output:result %}`** (server-side, no CSRF).
+- Full detail: `references/web-template-components.md`, `references/server-logic-objects.md`.

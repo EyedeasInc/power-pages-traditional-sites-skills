@@ -95,3 +95,8 @@ they are not.
 - Auth: Dataverse MCP or a Web API bearer token (`DATAVERSE_TOKEN`), per the shared backbone.
 - Related security review: over-broad bindings and Anonymous-role leaks are checks in
   `pp-securityreview`.
+
+## Microsoft docs & shared references
+
+- A custom role with `mspp_authenticatedusersrole = true` silently grants itself to **every signed-in user** — keep exactly one role per special flag; a user gets the **union** of their roles (widest grant wins).
+- Full detail: `references/security-model.md`.

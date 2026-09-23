@@ -158,3 +158,8 @@ Not core lifecycle, but in `pac power-pages` when you need them — see the CLI 
 - These commands act on the **environment's** sites; a tenant can host many, so always target
   by id, and confirm the active `pac auth` environment before a create or delete.
 - Everything here is Preview: if a flag is rejected, re-check the live CLI reference above.
+
+## Microsoft docs & shared references
+
+- Useful/lesser-known site settings (date/time formats, lookup modal, registration/login paths, `Head/Bottom` & `Head/Fonts`) are cataloged for reuse.
+- Full detail: `references/site-settings-catalog.md`.

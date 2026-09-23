@@ -101,3 +101,8 @@ columns are hidden/read-only on the relevant forms, lists, and Web API responses
 - Also enforce least-field exposure on the **Web API** (`pp-webapi`) — column security and
   `Webapi/<table>/fields` are complementary controls.
 - Auth: Dataverse MCP or a Web API bearer token (`DATAVERSE_TOKEN`), per the shared backbone.
+
+## Microsoft docs & shared references
+
+- Column permissions add field-level restrictions on top of table permissions — the Web API and forms/lists both honor them. (Microsoft's official plugin does not cover column-level security; this skill does.)
+- Full detail: `references/security-model.md`.

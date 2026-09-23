@@ -105,3 +105,8 @@ violations on a normal page load.
 - Headers are defense-in-depth; they reduce XSS blast radius but don't replace escaping — see
   `pp-securityreview` and `pp-liquid`.
 - Auth: Dataverse MCP or a Web API bearer token (`DATAVERSE_TOKEN`), per the shared backbone.
+
+## Microsoft docs & shared references
+
+- `Cache-Control` and **HSTS** (`HTTP/Strict-Transport-Security`) are **platform-managed** — a site setting has no effect. SameSite is set via `HTTP/SameSite/Default` and `HTTP/SameSite/{CookieName}` (default Lax). Newer environments enforce a stricter CSP.
+- Full detail: `references/site-settings-catalog.md`.

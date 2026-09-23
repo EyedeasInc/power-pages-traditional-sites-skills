@@ -73,3 +73,7 @@ Reload the changed page (a real page load, not just the API). If it still shows 
 - Cache flush is **not** instantaneous everywhere — give it a few seconds and reload.
 - Flushing does not fix a component that was saved to the **wrong site** or left **unpublished** —
   check those first if a flush "doesn't work".
+
+## Microsoft docs & shared references
+
+- List/form reads are cached (community reports ~15 min); **portal writes clear the cache, but Dataverse-side changes (flows, plugins, model-driven app edits) do not** — design for that lag rather than cache-busting hacks.

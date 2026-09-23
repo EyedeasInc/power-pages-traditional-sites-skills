@@ -113,8 +113,20 @@ Then invoke a skill by name (e.g. `/pp-webtemplate`) or just describe the task
 powerpages-traditional-site/
 ├─ plugin.json                         # plugin manifest
 ├─ .claude-plugin/marketplace.json     # local marketplace entry
-├─ references/
-│  └─ traditional-site-editing-model.md   # shared backbone (read first)
+├─ agents/                             # read-only specialists (spawned by skills)
+│  ├─ security-auditor.md
+│  └─ web-template-architect.md
+├─ hooks/                              # automatic reminders
+│  ├─ hooks.json                       # PostToolUse(Skill) → cache/permission reminder
+│  └─ skill_reminder.py
+├─ references/                         # shared knowledge (MS Learn + community, cited)
+│  ├─ traditional-site-editing-model.md   # shared backbone (read first)
+│  ├─ webapi-field-configuration.md
+│  ├─ security-model.md
+│  ├─ web-template-components.md
+│  ├─ server-logic-objects.md
+│  ├─ site-settings-catalog.md
+│  └─ community-credits.md
 └─ skills/                             # 27 skills
    ├─ Content:     pp-webpage/ pp-pagetemplate/ pp-webtemplate/ pp-webfile/
    │               pp-contentsnippet/ pp-serverlogic/ pp-liquid/
@@ -125,3 +137,23 @@ powerpages-traditional-site/
    ├─ Lifecycle:   pp-website/ pp-datamodel-migrate/ pp-download/ pp-upload/ pp-bootstrap-migrate/
    └─ Utility:     pp-cache/
 ```
+
+## Agents, hooks & references
+
+- **Agents** (`agents/`) — read-only specialists a skill can spawn for a focused, isolated job:
+  `security-auditor` (deep security audit, from `pp-securityreview`) and `web-template-architect`
+  (reusable-component / Liquid design, from `pp-webtemplate` / `pp-webpage` / `pp-pagetemplate`).
+  Reference them by scoped name, e.g. `@powerpages-traditional-site:security-auditor`.
+- **Hooks** (`hooks/`) — a `PostToolUse(Skill)` reminder that, after a content-mutating `pp-*` skill,
+  nudges you to flush the portal cache (`/pp-cache`) and confirm table permissions + web roles.
+- **References** (`references/`) — shared knowledge grounded in **Microsoft Learn** (authoritative),
+  cross-checked against Microsoft's official Power Pages plugin, and enriched with credited community
+  best practices. Each skill's *"Microsoft docs & shared references"* section points into these.
+
+## Sources & community credits
+
+Knowledge is grounded first in Microsoft Learn, then enriched with field-tested insight from the
+Power Pages community — paraphrased, credited, and (where they conflict with Microsoft) corrected in
+Microsoft's favor. Full list in [`references/community-credits.md`](references/community-credits.md):
+Nick Doelman, Nicholas Hayduk, Oleksandr Olashyn, Ulrikke Akerbak, Tino Rabe, Michel Mendes, Franco
+Musso. Community-led by [Zero to Hero](https://fromzerotoheroes.com); not a Microsoft product.

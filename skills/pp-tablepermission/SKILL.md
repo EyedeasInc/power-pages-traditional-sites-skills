@@ -216,3 +216,8 @@ web-role bindings by querying `mspp_entitypermission_webroleset` — never an `$
   app-only SP; (3) the intersect EntitySetName ends in **`-set`**; (4) lookups on portal forms
   need `append`/`appendto`, not just create/write; (5) related tables use **Parent**-scope child
   permissions.
+
+## Microsoft docs & shared references
+
+- Scopes: **Global** (avoid; all records), **Contact** (safest default), Account, Parent, Self. Global is anonymous-reachable **only when bound to the Anonymous Users role**. Verify bindings via the `mspp_entitypermission_webroleset` intersect.
+- Full detail: `references/security-model.md`.

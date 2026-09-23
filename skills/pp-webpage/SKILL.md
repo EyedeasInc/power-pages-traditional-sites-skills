@@ -172,3 +172,9 @@ pattern), otherwise reads a bearer token from the `DATAVERSE_TOKEN` env var.
 - Quirks to remember: (1) root create auto-spawns a content page — reuse it; (2) auto-created
   content pages miss template/publishing/language — set them; (3) use single-property `PUT`
   for `mspp_copy` and `$ref` for lookups to dodge the validation plugin; (4) clear the cache.
+
+## Microsoft docs & shared references
+
+- Entity-list **Calendar/Map** views need a **Rewrite-mode** page template (not a Web-Template page template).
+- For component/Liquid design, use the **`web-template-architect`** agent.
+- Full detail: `references/web-template-components.md`.

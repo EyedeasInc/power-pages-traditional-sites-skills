@@ -111,3 +111,8 @@ confirm it renders in the intended layout (header/footer present or not, per the
   `mspp_webtemplate`. Layout markup is `pp-webtemplate`; the page is `pp-webpage`.
 - Scope every query by `_mspp_websiteid_value`; one env can host several sites.
 - Auth: Dataverse MCP or a Web API bearer token (`DATAVERSE_TOKEN`), per the shared backbone.
+
+## Microsoft docs & shared references
+
+- **Render mode matters:** a Web-Template page template won't render entity-list **Calendar/Map** views — use a **Rewrite-mode** page template for those pages.
+- Full detail: `references/web-template-components.md`.

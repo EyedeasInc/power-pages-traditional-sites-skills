@@ -222,3 +222,9 @@ from `--url` or the env var of the same name.
 - Security: still gated by **table permissions + web roles** — enabling the API grants nothing.
 - Always scope by **website** (`_mspp_websiteid_value`); read live, PATCH-else-POST, never
   batch-upload; clear the cache after changing settings.
+
+## Microsoft docs & shared references
+
+- **Wildcard `Webapi/<table>/fields = *` is being removed** — no new sites Aug 2026; removed for **all sites Sept 14, 2026**. Use an explicit least-privilege column list, or set `Webapi/<table>/UseFieldsFromView = True` with a public **`Power Pages Web API Columns`** view (site v9.8.8.x+). No column is exempt (list file/image/rich-text explicitly).
+- The Web API serves **data tables only** — `mspp_`/`adx_` config tables are unsupported. A `GET` with nested Parental/Contact/Account permissions may need **FetchXML**.
+- Full detail: `references/webapi-field-configuration.md`.

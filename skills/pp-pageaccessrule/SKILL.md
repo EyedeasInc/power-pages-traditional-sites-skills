@@ -93,3 +93,8 @@ are how you make a members area — test the negative case, not just the positiv
 - Gates **pages**, not data — pair with `pp-tablepermission` (data) and `pp-webrole` (roles) for
   full access control. Reviewed by `pp-securityreview`.
 - Auth: Dataverse MCP or a Web API bearer token (`DATAVERSE_TOKEN`), per the shared backbone.
+
+## Microsoft docs & shared references
+
+- Page access rules gate **pages** by web role; table permissions gate **data**. Both are deny-by-default.
+- Full detail: `references/security-model.md`.

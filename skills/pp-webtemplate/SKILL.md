@@ -162,3 +162,9 @@ comes from `--url` or the env var of the same name.
 - Parse rule: `json.loads(raw)` **directly**; `html.unescape` only as a fallback on failure.
 - Safety rules: GET live first (local copies are stale); match-once guard before PATCH; patch the
   single component (never batch-upload); flush cache after (see `pp-cache`).
+
+## Microsoft docs & shared references
+
+- Build reusable components with the official **`{% manifest %}`** tag (`type: "Functional"`, `params` as strings, no nesting, copy-to-extend); consume via `{% include 'Name' p:'v' %}`.
+- To design a component before implementing, use the **`powerpages-traditional-site:web-template-architect`** agent.
+- Full detail: `references/web-template-components.md`.
