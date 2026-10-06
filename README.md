@@ -1,4 +1,4 @@
-# Power Pages Traditional-site toolkit (Claude Code plugin)
+# Power Pages Traditional-site toolkit (Claude Code & GitHub Copilot plugin)
 
 Skills for **provisioning**, building, integrating, and **securing** traditional **Power Pages** sites —
 the Dataverse-backed Studio/Liquid sites on the **enhanced data model** (`mspp_*` tables +
@@ -78,23 +78,56 @@ word (`/pp-webtemplate`); action/CLI skills keep a hyphen (`/pp-datamodel-migrat
 |---|---|
 | **`/pp-cache`** | Invalidate the portal cache so component changes actually show. |
 
-## Install (local)
+## Install
+
+One repo, one manifest (`.claude-plugin/plugin.json`), read by both Claude Code and GitHub Copilot.
+
+### Claude Code
 
 ```text
-/plugin marketplace add D:\AI\powerpages-traditional-site
+/plugin marketplace add EyedeasInc/power-pages-traditional-sites-skills
 /plugin install powerpages-traditional-site@powerpages-traditional-site
 ```
 
-Then invoke a skill by name (e.g. `/pp-webtemplate`) or just describe the task
+Or from a local clone: `/plugin marketplace add /path/to/power-pages-traditional-sites-skills`.
+
+### GitHub Copilot CLI
+
+```bash
+copilot plugin install EyedeasInc/power-pages-traditional-sites-skills
+```
+
+Or via the marketplace: `copilot plugin marketplace add EyedeasInc/power-pages-traditional-sites-skills`,
+then `copilot plugin install powerpages-traditional-site@powerpages-traditional-site`.
+After pulling changes, reinstall to refresh Copilot's plugin cache.
+
+### GitHub Copilot in VS Code (agent plugins, Preview)
+
+Add the repo as a plugin marketplace in `settings.json`, then install it from the Extensions view
+(`@agentPlugins`) or **Chat: Plugins**:
+
+```json
+"chat.plugins.marketplaces": ["EyedeasInc/power-pages-traditional-sites-skills"]
+```
+
+Or run **Chat: Install Plugin From Source** with the repo URL. Plugins installed with the Copilot CLI
+are picked up by VS Code automatically.
+
+### Using it
+
+Invoke a skill by name (e.g. `/pp-webtemplate`) or just describe the task
 ("add a members-only page", "put a contact form on the home page", "why isn't my template change showing").
 
-> Prefer one as a personal skill instead of a plugin? Copy the individual `skills/<name>/`
-> folder to `~/.claude/skills/<name>/`.
+> Prefer one as a standalone skill instead of a plugin? Copy the `skills/<name>/` folder to your
+> personal skills folder (`~/.claude/skills/` or `~/.copilot/skills/`). Skills that link to
+> `../../references/` need that folder copied alongside.
 
 ## Requirements
 
 - A Power Pages **enhanced data model** site and Dataverse access — a **Dataverse MCP** (preferred
   for reads; respects security roles), or a Web API **bearer token**.
+- **Python 3** for the bundled scripts and the reminder hook. On macOS/Linux run them with `python3`;
+  on Windows `python` is fine.
 - The bundled Python scripts share one auth pattern: they reuse a workspace `scripts/auth.py`
   exposing `get_token()` (the `dv-connect` pattern) if present, otherwise read a bearer token from
   the `DATAVERSE_TOKEN` env var. `DATAVERSE_URL` comes from a `--url` arg or the env var.
@@ -111,11 +144,12 @@ Then invoke a skill by name (e.g. `/pp-webtemplate`) or just describe the task
 
 ```
 powerpages-traditional-site/
-├─ plugin.json                         # plugin manifest
-├─ .claude-plugin/marketplace.json     # local marketplace entry
+├─ .claude-plugin/
+│  ├─ plugin.json                      # plugin manifest (Claude Code + Copilot)
+│  └─ marketplace.json                 # single-plugin marketplace
 ├─ agents/                             # read-only specialists (spawned by skills)
-│  ├─ security-auditor.md
-│  └─ web-template-architect.md
+│  ├─ security-auditor.agent.md
+│  └─ web-template-architect.agent.md
 ├─ hooks/                              # automatic reminders
 │  ├─ hooks.json                       # PostToolUse(Skill) → cache/permission reminder
 │  └─ skill_reminder.py
@@ -143,8 +177,9 @@ powerpages-traditional-site/
 - **Agents** (`agents/`) — read-only specialists a skill can spawn for a focused, isolated job:
   `security-auditor` (deep security audit, from `pp-securityreview`) and `web-template-architect`
   (reusable-component / Liquid design, from `pp-webtemplate` / `pp-webpage` / `pp-pagetemplate`).
-  Reference them by scoped name, e.g. `@powerpages-traditional-site:security-auditor`.
-- **Hooks** (`hooks/`) — a `PostToolUse(Skill)` reminder that, after a content-mutating `pp-*` skill,
+  In Claude Code they appear as `powerpages-traditional-site:security-auditor`; in Copilot, pick them
+  from the agent list (`/agent`).
+- **Hooks** (`hooks/`) — a `PostToolUse` reminder (Claude-format hooks, also honored by Copilot) that, after a content-mutating `pp-*` skill,
   nudges you to flush the portal cache (`/pp-cache`) and confirm table permissions + web roles.
 - **References** (`references/`) — shared knowledge grounded in **Microsoft Learn** (authoritative),
   cross-checked against Microsoft's official Power Pages plugin, and enriched with credited community

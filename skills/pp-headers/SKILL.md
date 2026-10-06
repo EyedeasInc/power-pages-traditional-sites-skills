@@ -13,7 +13,7 @@ Configure the **security response headers** a traditional (enhanced-data-model, 
 Pages site sends to browsers — driven by **`mspp_sitesetting`** records — then verify the live
 responses carry them. This is the header/CSP layer referenced by `pp-securityreview` (check #5).
 
-> Read `references/traditional-site-editing-model.md` first. Headers are **site settings**, so
+> Read `../../references/traditional-site-editing-model.md` first. Headers are **site settings**, so
 > the loop is: read the current settings → set/patch the `mspp_value` → flush cache → confirm
 > the header on a live response.
 
@@ -109,4 +109,4 @@ violations on a normal page load.
 ## Microsoft docs & shared references
 
 - `Cache-Control` and **HSTS** (`HTTP/Strict-Transport-Security`) are **platform-managed** — a site setting has no effect. SameSite is set via `HTTP/SameSite/Default` and `HTTP/SameSite/{CookieName}` (default Lax). Newer environments enforce a stricter CSP.
-- Full detail: `references/site-settings-catalog.md`.
+- Full detail: `../../references/site-settings-catalog.md`.

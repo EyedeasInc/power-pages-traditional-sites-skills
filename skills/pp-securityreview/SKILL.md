@@ -15,7 +15,7 @@ templates and page JS, and the Dataverse-side access controls (Web API settings,
 permissions, web roles) that gate it. This is not a generic web scanner — it targets the
 seams where portal content, Liquid, the Web API, and the security model meet.
 
-Read `references/traditional-site-editing-model.md` first (the shared backbone: the
+Read `../../references/traditional-site-editing-model.md` first (the shared backbone: the
 component tables, "read live before you edit", cache flush). Then work the checklist in
 `references/review-checklist.md`, which has the exact query/inspection for each item, a
 severity, and a fix. Record findings in the report format at the end of this file.
@@ -244,4 +244,4 @@ Fixes are single-component live patches, not a site re-upload:
 
 - Model is **deny-by-default**; **Global scope is anonymous-reachable only when bound to the Anonymous Users role**; from **June 2026** forms/lists enforce permissions regardless of the legacy "Enable Table Permissions" flag.
 - For a deep, isolated audit, spawn the **`powerpages-traditional-site:security-auditor`** agent.
-- Full detail: `references/security-model.md`, `references/webapi-field-configuration.md`.
+- Full detail: `../../references/security-model.md`, `../../references/webapi-field-configuration.md`.

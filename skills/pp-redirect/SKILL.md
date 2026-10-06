@@ -14,7 +14,7 @@ Pages site through the Dataverse Web API. A redirect maps an **inbound URL** to 
 web page, a site marker, or an external URL — with a **301/302** status, so renamed/moved pages
 and vanity URLs keep resolving instead of 404ing.
 
-> Read `references/traditional-site-editing-model.md` first. A redirect targets exactly one of:
+> Read `../../references/traditional-site-editing-model.md` first. A redirect targets exactly one of:
 > a web page, a `pp-sitemarker`, or an external URL. Prefer marker/page targets so the redirect
 > survives later URL changes.
 

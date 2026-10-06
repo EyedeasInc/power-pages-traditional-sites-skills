@@ -2,7 +2,6 @@
 name: web-template-architect
 description: Designs reusable web-template components and the Liquid/render-mode approach for a traditional (enhanced-data-model, mspp_*) Power Pages site. Use when planning a reusable component, deciding Liquid vs Web API, choosing a page-template render mode, or structuring web templates before pp-webtemplate implements them.
 tools: Read, Grep, Glob
-model: sonnet
 color: purple
 ---
 

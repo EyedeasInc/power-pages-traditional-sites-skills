@@ -14,7 +14,7 @@ Manage **multistep forms** (`mspp_webform`, its `mspp_webformstep` steps, and pe
 the Dataverse Web API. A multistep form is a **wizard** that builds a record across steps with
 **conditional branching** — for applications, registrations, and long intake flows.
 
-> Read `references/traditional-site-editing-model.md` first. Structure: one **`mspp_webform`**
+> Read `../../references/traditional-site-editing-model.md` first. Structure: one **`mspp_webform`**
 > (form-level properties + progress bar) → an ordered chain of **`mspp_webformstep`** rows (Load
 > Form / Load Tab / Condition / Redirect) → optional **`mspp_webformmetadata`** per-field
 > overrides on a step. Use a multistep form only when you truly need multiple steps — a single

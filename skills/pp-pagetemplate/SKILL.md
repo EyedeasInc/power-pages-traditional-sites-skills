@@ -15,7 +15,7 @@ a **web page** and the **web template** (Liquid layout) that renders it — ever
 binds `mspp_pagetemplateid`, so **you can't create a page without a page template** (that's why
 `pp-webpage` reuses an existing one).
 
-> Read `references/traditional-site-editing-model.md` first. Know the three-link chain:
+> Read `../../references/traditional-site-editing-model.md` first. Know the three-link chain:
 >
 > **web page** (`mspp_webpage`) → **page template** (`mspp_pagetemplate`) → **web template**
 > (`mspp_webtemplate`, the Liquid layout).
@@ -115,4 +115,4 @@ confirm it renders in the intended layout (header/footer present or not, per the
 ## Microsoft docs & shared references
 
 - **Render mode matters:** a Web-Template page template won't render entity-list **Calendar/Map** views — use a **Rewrite-mode** page template for those pages.
-- Full detail: `references/web-template-components.md`.
+- Full detail: `../../references/web-template-components.md`.

@@ -2,7 +2,6 @@
 name: security-auditor
 description: Deep, read-only security audit of a traditional (enhanced-data-model, mspp_*) Power Pages site — table permissions, web roles, Web API column exposure, column-level security, anonymous access, headers/CSP, and legacy exposure. Spawn from pp-securityreview for a focused audit, or when the user asks to review/harden a traditional Power Pages site's security.
 tools: Read, Grep, Glob, Bash
-model: sonnet
 color: red
 ---
 

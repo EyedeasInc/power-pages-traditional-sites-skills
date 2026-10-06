@@ -1,6 +1,8 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/.claude-plugin
+# Editor / IDE
 /.vs
+.vscode/
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc

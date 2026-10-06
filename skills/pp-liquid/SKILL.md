@@ -16,7 +16,7 @@ parts: an empty-result test that silently lies, escaping that stops stored XSS, 
 correct way to call the Web API.
 
 > Editing model (where these live, how to PATCH them back, cache-flush): see
-> `references/traditional-site-editing-model.md`. This skill is about the **Liquid you write**,
+> `../../references/traditional-site-editing-model.md`. This skill is about the **Liquid you write**,
 > not how you push it.
 
 Copy-paste snippets for every pattern below live in **`references/liquid-patterns.md`**.
@@ -209,4 +209,4 @@ Hard rules:
 
 - Pipe nested snippet/site-marker Liquid through **`| liquid`**; mind `forloop.index` (1-based) vs `index0`; escape Dataverse values with `| escape`.
 - Call server logic during render with **`{% serverlogic name:'rec' operation:'fn' input:'..' output:result %}`** (server-side, no CSRF).
-- Full detail: `references/web-template-components.md`, `references/server-logic-objects.md`.
+- Full detail: `../../references/web-template-components.md`, `../../references/server-logic-objects.md`.

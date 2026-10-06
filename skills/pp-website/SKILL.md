@@ -162,4 +162,4 @@ Not core lifecycle, but in `pac power-pages` when you need them — see the CLI 
 ## Microsoft docs & shared references
 
 - Useful/lesser-known site settings (date/time formats, lookup modal, registration/login paths, `Head/Bottom` & `Head/Fonts`) are cataloged for reuse.
-- Full detail: `references/site-settings-catalog.md`.
+- Full detail: `../../references/site-settings-catalog.md`.

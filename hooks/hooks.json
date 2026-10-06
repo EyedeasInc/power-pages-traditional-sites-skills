@@ -3,12 +3,11 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": "Skill",
+        "matcher": "Skill|skill",
         "hooks": [
           {
             "type": "command",
-            "command": "python",
-            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/skill_reminder.py"],
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/skill_reminder.py\" || python \"${CLAUDE_PLUGIN_ROOT}/hooks/skill_reminder.py\"",
             "timeout": 5
           }
         ]

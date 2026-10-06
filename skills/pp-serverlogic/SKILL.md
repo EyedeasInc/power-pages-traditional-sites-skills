@@ -15,7 +15,7 @@ records directly. Server logic executes **server-side** (secrets, privileged Dat
 validation the browser can't be trusted to do), and is invoked from the site. It is the
 traditional-site analog of a code-site's server-side handler / API endpoint.
 
-Read `references/traditional-site-editing-model.md` first — this skill assumes the shared
+Read `../../references/traditional-site-editing-model.md` first — this skill assumes the shared
 `powerpagecomponent` model, the read-live-first rule, and the auth pattern described there.
 
 ## The model: server logic is TWO components
@@ -163,4 +163,4 @@ env var. `--dry-run` prints the target and payload without writing.
 
 - Server logic exposes the **`Server.*`** objects (HttpClient, Dataverse, **CloudFlow.TriggerAsync** to run a Power Automate flow, SiteSetting, EnvironmentVariable, Website, User, Logger, Context).
 - Invoke from a client script (`shell.safeAjax` — `/_api/serverlogics/<name>`) **or** from Liquid (`{% serverlogic %}`). Never store secrets in code (use Key Vault + env vars). The runtime rejects `eval`, `require`, `fetch`, `process.*`, `setTimeout`, `__proto__`, etc.
-- Full detail: `references/server-logic-objects.md`.
+- Full detail: `../../references/server-logic-objects.md`.

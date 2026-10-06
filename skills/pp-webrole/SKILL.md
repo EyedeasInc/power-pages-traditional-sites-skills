@@ -14,7 +14,7 @@ Pages site through the Dataverse Web API. A web role is the **access group** tha
 else binds to — table permissions (`pp-tablepermission`), web page access control rules,
 cloud-flow access, Web API reads. Without a role, a permission grants nothing.
 
-> Read `references/traditional-site-editing-model.md` first. This skill creates and manages the
+> Read `../../references/traditional-site-editing-model.md` first. This skill creates and manages the
 > roles; **binding** a role to a table permission is `pp-tablepermission` (the
 > `mspp_entitypermission_webrole` intersect).
 
@@ -99,4 +99,4 @@ they are not.
 ## Microsoft docs & shared references
 
 - A custom role with `mspp_authenticatedusersrole = true` silently grants itself to **every signed-in user** — keep exactly one role per special flag; a user gets the **union** of their roles (widest grant wins).
-- Full detail: `references/security-model.md`.
+- Full detail: `../../references/security-model.md`.

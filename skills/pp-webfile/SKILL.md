@@ -13,7 +13,7 @@ Update the actual **bytes** of a web file on an **enhanced-data-model** Power Pa
 PATCHing the file through the Dataverse Web API — no whole-site upload, no Studio round-trip.
 Then bump a cache-buster so clients refetch the new version.
 
-Read the shared backbone first: `references/traditional-site-editing-model.md`. This skill
+Read the shared backbone first: `../../references/traditional-site-editing-model.md`. This skill
 assumes its golden rules (read live first, patch one component, never batch-upload).
 
 ## Web file vs. web template — where the payload lives (don't confuse them)

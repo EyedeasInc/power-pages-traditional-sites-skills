@@ -12,7 +12,7 @@ metadata:
 On an **enhanced-data-model** site, portal access to Dataverse records is governed by
 **table permissions** (`mspp_entitypermission`). Configure them by writing Dataverse records
 directly — no front-end code. Read the shared
-[`references/traditional-site-editing-model.md`](../../references/traditional-site-editing-model.md)
+[`../../references/traditional-site-editing-model.md`](../../references/traditional-site-editing-model.md)
 first; this skill assumes it.
 
 > Table permissions are a **first-class `mspp_*` table** (per the backbone's rule: dedicated
@@ -220,4 +220,4 @@ web-role bindings by querying `mspp_entitypermission_webroleset` — never an `$
 ## Microsoft docs & shared references
 
 - Scopes: **Global** (avoid; all records), **Contact** (safest default), Account, Parent, Self. Global is anonymous-reachable **only when bound to the Anonymous Users role**. Verify bindings via the `mspp_entitypermission_webroleset` intersect.
-- Full detail: `references/security-model.md`.
+- Full detail: `../../references/security-model.md`.

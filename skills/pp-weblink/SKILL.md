@@ -14,7 +14,7 @@ Manage a traditional (enhanced-data-model, `mspp_*`) Power Pages site's **naviga
 **web links** (`mspp_weblink`) inside it — through the Dataverse Web API. Create sets, add/edit/
 reorder/remove links, and build nested (dropdown) menus.
 
-> Read `references/traditional-site-editing-model.md` first (component model, read-live-first,
+> Read `../../references/traditional-site-editing-model.md` first (component model, read-live-first,
 > cache flush). `pp-webpage` creates a page *and* drops one link into the primary set as part of
 > Step 4; use **this** skill when the job is the navigation itself — a new menu, reordering,
 > sub-menus, external links, or footer links.

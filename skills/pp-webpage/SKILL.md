@@ -177,4 +177,4 @@ pattern), otherwise reads a bearer token from the `DATAVERSE_TOKEN` env var.
 
 - Entity-list **Calendar/Map** views need a **Rewrite-mode** page template (not a Web-Template page template).
 - For component/Liquid design, use the **`web-template-architect`** agent.
-- Full detail: `references/web-template-components.md`.
+- Full detail: `../../references/web-template-components.md`.

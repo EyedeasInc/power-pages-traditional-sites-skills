@@ -15,7 +15,7 @@ is **page-level authorization** — it grants or restricts access to a web page 
 descendants) for specific **web roles**. This is distinct from table permissions
 (`pp-tablepermission`), which gate *data*; this gates *pages*.
 
-> Read `references/traditional-site-editing-model.md` first. A rule targets a **root** web page,
+> Read `../../references/traditional-site-editing-model.md` first. A rule targets a **root** web page,
 > declares a **right** (restrict read / grant change) and a **scope**, and is **bound to web
 > roles** via an intersect. `pp-securityreview` check #4 (anonymous access) inspects exactly
 > these rules; `pp-webrole` creates the roles they bind.
@@ -97,4 +97,4 @@ are how you make a members area — test the negative case, not just the positiv
 ## Microsoft docs & shared references
 
 - Page access rules gate **pages** by web role; table permissions gate **data**. Both are deny-by-default.
-- Full detail: `references/security-model.md`.
+- Full detail: `../../references/security-model.md`.

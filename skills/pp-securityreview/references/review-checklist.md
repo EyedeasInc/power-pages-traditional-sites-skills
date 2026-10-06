@@ -3,7 +3,7 @@
 Work top to bottom. Each item gives **what to query/inspect**, a **severity**, and the
 **fix**. Everything is scoped to one website — set `<SITEID>` = the `mspp_websiteid` you are
 auditing and `<PPSITEID>` = the matching `powerpagesiteid` for `powerpagecomponent` rows.
-All GETs are read-only. Read the shared backbone (`references/traditional-site-editing-model.md`)
+All GETs are read-only. Read the shared backbone (`../../../references/traditional-site-editing-model.md`)
 first: read live before you conclude anything — a local `src-control` snapshot can be stale.
 
 Endpoint note: portal/browser calls hit `/_api/<entityset>` (Web API for Pages); admin/audit

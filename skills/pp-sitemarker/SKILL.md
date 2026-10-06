@@ -15,7 +15,7 @@ that Liquid and configuration resolve by name — so templates link to a page by
 name** instead of a hard-coded URL, and the link keeps working when the page's `mspp_partialurl`
 changes.
 
-> Read `references/traditional-site-editing-model.md` first. A marker is a name → page mapping;
+> Read `../../references/traditional-site-editing-model.md` first. A marker is a name → page mapping;
 > templates consume it in Liquid. Pair with `pp-webpage` (the target page) and `pp-webtemplate`
 > (where the marker is used).
 

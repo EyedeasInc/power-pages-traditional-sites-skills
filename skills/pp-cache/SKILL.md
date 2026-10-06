@@ -15,7 +15,7 @@ On a traditional (enhanced-data-model) Power Pages site, the running portal serv
 this plugin does — the record changes immediately, but visitors keep seeing the **cached** version
 until you invalidate it. This is the single most common "I deployed but nothing changed" cause.
 
-See `references/traditional-site-editing-model.md` for the editing model these changes come from.
+See `../../references/traditional-site-editing-model.md` for the editing model these changes come from.
 
 ## When you need it
 

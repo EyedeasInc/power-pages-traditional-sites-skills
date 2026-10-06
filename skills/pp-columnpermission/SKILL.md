@@ -14,7 +14,7 @@ traditional (enhanced-data-model, `mspp_*`) Power Pages site through the Dataver
 Column permissions restrict **read / update / create on specific columns** of a table *within* a
 table permission — so a web role can access a table but **not** its sensitive fields.
 
-> Read `references/traditional-site-editing-model.md` first. This **extends `pp-tablepermission`**:
+> Read `../../references/traditional-site-editing-model.md` first. This **extends `pp-tablepermission`**:
 > a column-permission **profile** hangs off a table permission (`mspp_entitypermission`) and is
 > bound to **web roles**; each **column permission** in the profile sets per-column rights.
 > Without a profile, a table permission exposes **every** readable column.
@@ -105,4 +105,4 @@ columns are hidden/read-only on the relevant forms, lists, and Web API responses
 ## Microsoft docs & shared references
 
 - Column permissions add field-level restrictions on top of table permissions — the Web API and forms/lists both honor them. (Microsoft's official plugin does not cover column-level security; this skill does.)
-- Full detail: `references/security-model.md`.
+- Full detail: `../../references/security-model.md`.

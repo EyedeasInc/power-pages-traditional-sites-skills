@@ -25,8 +25,18 @@ def main():
         data = json.loads(raw) if raw.strip() else {}
     except Exception:
         return
-    tool_input = data.get("tool_input") or {}
-    skill = str(tool_input.get("skill") or tool_input.get("command") or data.get("skill") or "")
+    # Claude Code / Copilot PascalCase hooks send tool_input; Copilot camelCase sends toolArgs
+    # (sometimes as a JSON string).
+    tool_input = data.get("tool_input") or data.get("toolArgs") or {}
+    if isinstance(tool_input, str):
+        try:
+            tool_input = json.loads(tool_input)
+        except Exception:
+            tool_input = {"skill": tool_input}
+    if not isinstance(tool_input, dict):
+        tool_input = {}
+    skill = str(tool_input.get("skill") or tool_input.get("name") or tool_input.get("command")
+                or data.get("skill") or "")
     base = skill.split(":")[-1].split("/")[-1].strip().lstrip("/")
     if base not in CONTENT:
         return

@@ -14,7 +14,7 @@ Manage **content snippets** (`mspp_contentsnippet`) on a traditional (enhanced-d
 localizable** block of text or HTML that templates and pages pull in with Liquid — so editors
 change copy (hero text, banners, footers, CTAs) **without touching a web template**.
 
-> Read `references/traditional-site-editing-model.md` first. A snippet's value is edited on the
+> Read `../../references/traditional-site-editing-model.md` first. A snippet's value is edited on the
 > `mspp_contentsnippet` record directly (not inside a `powerpagecomponent` JSON payload), then
 > the cache is flushed.
 

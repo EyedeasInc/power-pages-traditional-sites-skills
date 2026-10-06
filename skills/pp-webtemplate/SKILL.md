@@ -13,7 +13,7 @@ Change the Liquid/HTML **source** of a web template on an **enhanced-data-model*
 Power Pages site by patching the single `powerpagecomponent` record directly through the
 Dataverse Web API. No batch upload, no `pac pages upload` — you touch exactly one row.
 
-> Read `references/traditional-site-editing-model.md` first. This skill assumes its golden
+> Read `../../references/traditional-site-editing-model.md` first. This skill assumes its golden
 > rules: **read live before you edit**, **patch components individually**, **parse `content`
 > robustly**, **match-once guard**, and **flush cache after**.
 
@@ -167,4 +167,4 @@ comes from `--url` or the env var of the same name.
 
 - Build reusable components with the official **`{% manifest %}`** tag (`type: "Functional"`, `params` as strings, no nesting, copy-to-extend); consume via `{% include 'Name' p:'v' %}`.
 - To design a component before implementing, use the **`powerpages-traditional-site:web-template-architect`** agent.
-- Full detail: `references/web-template-components.md`.
+- Full detail: `../../references/web-template-components.md`.

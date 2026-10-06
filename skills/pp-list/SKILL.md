@@ -14,7 +14,7 @@ site through the Dataverse Web API. A list is a **no-code grid** of Dataverse re
 one or more **Dataverse saved views** (`savedquery`), with sorting, paging, search, filters,
 row/toolbar actions, and alternate renderings (map, calendar, modern list).
 
-> Read `references/traditional-site-editing-model.md` first. Core columns live on
+> Read `../../references/traditional-site-editing-model.md` first. Core columns live on
 > `mspp_entitylist`; actions/dialogs/overrides live in the **Options / Grid Configuration** JSON
 > on the list; map & calendar views are their own config tabs. Column logical names mirror legacy
 > `adx_entitylist`; **read an existing list first** and copy names/shapes.
@@ -137,4 +137,4 @@ records the user can **Read** — an empty list is usually a missing **table per
 ## Microsoft docs & shared references
 
 - From **June 2026**, lists enforce table permissions regardless of the legacy flag; **list OData feeds are removed by June 2026** — use the Web API. Modern lists support custom JavaScript (v9.8.8.x+).
-- Full detail: `references/security-model.md`, `references/webapi-field-configuration.md`.
+- Full detail: `../../references/security-model.md`, `../../references/webapi-field-configuration.md`.

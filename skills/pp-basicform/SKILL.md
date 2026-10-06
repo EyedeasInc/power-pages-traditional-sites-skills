@@ -14,7 +14,7 @@ config) on a traditional (enhanced-data-model, `mspp_*`) Power Pages site throug
 Web API. A basic form renders **one Dataverse record** for **Insert / Edit / ReadOnly** on the
 portal, reusing a **Dataverse main form's** layout — the no-code way to collect or show a record.
 
-> Read `references/traditional-site-editing-model.md` first. The full surface is: the **form**
+> Read `../../references/traditional-site-editing-model.md` first. The full surface is: the **form**
 > (`mspp_entityform`) → **Form Options / On Success / Additional Settings** (columns + related
 > config on the form) → **metadata rows** (`mspp_entityformmetadata`, per field/section/tab/notes)
 > → **Custom JavaScript** → placed on a page. Most settings below are **columns on
@@ -188,4 +188,4 @@ fires, validation and file upload work, and actions respect permissions.
 ## Microsoft docs & shared references
 
 - From **June 2026**, forms enforce table permissions **regardless of the legacy "Enable Table Permissions" flag** — configure real table permissions + web roles. Client-side Web API save needs a least-privilege `fields` list (see below).
-- Full detail: `references/security-model.md`, `references/webapi-field-configuration.md`.
+- Full detail: `../../references/security-model.md`, `../../references/webapi-field-configuration.md`.
