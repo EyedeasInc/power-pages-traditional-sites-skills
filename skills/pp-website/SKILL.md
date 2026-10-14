@@ -73,8 +73,29 @@ Required flags:
 
 `--website-record-id` is optional (supply a specific Dataverse record id for the site).
 
-**Template names** (`--template-name`). Power Pages (blank/starter/scenario) templates give
-you a **traditional, enhanced-data-model** site — the kind this plugin targets:
+> ⚠️ **Data model trap: check before you build.** Verified 2026-10-14 with pac 2.13.1:
+> `create-website --template-name BlankPage` provisioned the site on the **Standard** (`adx_`)
+> data model (`templateName: PowerPages_BlankTemplate`, `packageInstallStatus: Installing` for
+> 20+ minutes, no `mspp_website` row). The **same template** created from the Power Pages home
+> page came up **Enhanced** in about 2 minutes as `PowerPages_BlankTemplate_V2`. There is no
+> data-model flag: `pac` rejects `_V2` template names ("unknown argument value"), and the
+> websites API (`api-version=2022-03-01-preview`) answers `A008 Template not available`.
+> Every content skill in this plugin needs **Enhanced**, so:
+>
+> 1. **Recommended:** create the site from the Power Pages home page (https://make.powerpages.microsoft.com,
+>    **Start with a template**, pick the template, **Choose this template**, name and address, **Done**).
+>    The home page uses the Enhanced (`_V2`) templates by default.
+> 2. If you must use `pac`, create it, then migrate it with `/pp-datamodel-migrate` before any content work.
+> 3. Either way, **verify** before handing the site to the other skills:
+>    ```
+>    pac power-pages get-website-by-id --id <SITEID> --json   # expect "dataModel": "Enhanced"
+>    ```
+>    `websiteRecordId` (the `mspp_website` / `powerpagesite` id the content skills use) is filled in
+>    once `packageInstallStatus` is `Installed`.
+
+**Template names** (`--template-name`). These are the Power Pages (blank/starter/scenario)
+templates the CLI accepts. Through `pac` they provision a traditional site, but check the data
+model as described above:
 
 - Starter / blank: `StarterLayout1`…`StarterLayout5`, `BlankPage`, `DefaultPortalTemplate`
 - Scenario (Power Pages): `BookMeetings`, `FAQ`, `ProgramRegistration`, `BuildingPermit`,
@@ -85,8 +106,11 @@ you a **traditional, enhanced-data-model** site — the kind this plugin targets
 
 Provisioning is **asynchronous** — the command triggers creation and returns; the site takes
 a few minutes to come up. Poll `get-websites` until it appears, then `get-website-by-id` for
-its URL and status. For a blank traditional site to start from, `StarterLayout1` (aka
-`DefaultPortalTemplate`) or `BlankPage` is the usual pick.
+its URL and status (`status`, `dataModel`, `packageInstallStatus`, `websiteRecordId`). For a blank
+traditional site to start from, **Blank page** (`BlankPage`) or **Starter layout 1**
+(`StarterLayout1`, aka `DefaultPortalTemplate`) is the usual pick. Create it from the home page to
+get the Enhanced model (see the warning above). Site subdomains are unique across all of Power
+Pages; suggest a name with the owner's initials when the obvious one is taken.
 
 ## Run / pause a site
 
