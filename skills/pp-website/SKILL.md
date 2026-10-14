@@ -92,6 +92,9 @@ Required flags:
 >    **Start with a template**, pick the template, **Choose this template**, name and address, **Done**).
 >    The home page uses the Enhanced (`_V2`) templates by default.
 > 2. If you must use `pac`, create it, then migrate it with `/pp-datamodel-migrate` before any content work.
+>    **Do not** "fix" it with `set-portal-data-model-version --is-new-data-model true`: tested 2026-10-14, it only
+>    relabels the site (`dataModel: Enhanced`) while it still installs Standard (`adx_website` row, empty
+>    `websiteRecordId`), leaving a mismatched site.
 > 3. Either way, **verify** before handing the site to the other skills:
 >    ```
 >    pac power-pages get-website-by-id --id <SITEID> --json   # expect "dataModel": "Enhanced"
@@ -155,9 +158,9 @@ pac power-pages set-portal-data-model-version --id <SITEID> --is-new-data-model 
 pac power-pages set-portal-bootstrap-v5-enabled --id <SITEID>
 ```
 
-`--is-new-data-model true` stamps the **enhanced (`mspp_*`) data model** — the model this
-whole plugin assumes. Only touch these when a site's stamp is wrong; new Power Pages sites are
-already on the enhanced model.
+`--is-new-data-model true` stamps the **enhanced (`mspp_*`) data model** flag. It does **not** convert
+a Standard site (see the data model warning under *Create a website*); only use it to correct a
+wrong flag on a site whose content is already in `mspp_*` / `powerpagecomponent`.
 
 ## Delete a website  ⚠️ destructive
 
