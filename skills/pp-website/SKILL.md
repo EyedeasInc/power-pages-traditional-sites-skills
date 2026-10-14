@@ -79,7 +79,9 @@ Required flags:
 > 20+ minutes, no `mspp_website` row). The **same template** created from the Power Pages home
 > page came up **Enhanced** in about 2 minutes as `PowerPages_BlankTemplate_V2`. There is no
 > data-model flag: `pac` rejects `_V2` template names ("unknown argument value"), and the
-> websites API (`api-version=2022-03-01-preview`) answers `A008 Template not available`.
+> websites API answers `A008 Template not available`. The docs list no data-model option for either
+> (pac reference; REST "Websites - Create Website", GA `api-version=2024-10-01`), although the
+> Enhanced data model article says new sites default to Enhanced. That default held for the home page, not for pac.
 > Every content skill in this plugin needs **Enhanced**, so:
 >
 > 1. **Recommended:** create the site from the Power Pages home page (https://make.powerpages.microsoft.com,
