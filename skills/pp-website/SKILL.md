@@ -82,6 +82,10 @@ Required flags:
 > websites API answers `A008 Template not available`. The docs list no data-model option for either
 > (pac reference; REST "Websites - Create Website", GA `api-version=2024-10-01`), although the
 > Enhanced data model article says new sites default to Enhanced. That default held for the home page, not for pac.
+> Sources: [pac power-pages](https://learn.microsoft.com/power-platform/developer/cli/reference/power-pages),
+> [Websites - Create Website](https://learn.microsoft.com/rest/api/power-platform/powerpages/websites/create-website),
+> [Enhanced data model](https://learn.microsoft.com/power-pages/admin/enhanced-data-model),
+> [Create a site with Power Pages](https://learn.microsoft.com/power-pages/getting-started/create-manage).
 > Every content skill in this plugin needs **Enhanced**, so:
 >
 > 1. **Recommended:** create the site from the Power Pages home page (https://make.powerpages.microsoft.com,
