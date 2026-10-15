@@ -74,6 +74,12 @@ Reload the changed page (a real page load, not just the API). If it still shows 
 - Flushing does not fix a component that was saved to the **wrong site** or left **unpublished** —
   check those first if a flush "doesn't work".
 
+- **`/_services/about` only clears the cache for a signed in portal admin, and only on the instance that
+  served the request.** On a multi instance site, reloads can flip between old and new content for minutes.
+  Reliable in a dev environment: `pac power-pages restart-website --id <portal id>` (async, about 1 to 2
+  minutes before it serves again). Verified 2026-10-14.
+- New table permissions and site settings follow the same rule: restart before you judge whether they work.
+
 ## Microsoft docs & shared references
 
 - List/form reads are cached (community reports ~15 min); **portal writes clear the cache, but Dataverse-side changes (flows, plugins, model-driven app edits) do not** — design for that lag rather than cache-busting hacks.
