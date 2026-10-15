@@ -114,6 +114,19 @@ invalidated. Flush it (see the `pp-cache` skill — e.g. open `/_services/about`
 **Clear cache**), then load a page that renders this template and confirm your change is live and
 the template still renders (a broken Liquid tag surfaces as a render error on the page).
 
+## Set a template as the site header or footer (verified 2026-10-14)
+
+`PATCH mspp_websites(<SITEID>)` with `mspp_headerwebtemplateid@odata.bind` fails with **412 "duplicate record"**.
+Write the ids into the `powerpagesite` row's `content` JSON instead:
+
+```
+GET   /api/data/v9.2/powerpagesites(<SITEID>)?$select=content
+PATCH /api/data/v9.2/powerpagesites(<SITEID>)
+{ "content": "{...existing keys..., \"headerwebtemplateid\": \"<TEMPLATEID>\", \"footerwebtemplateid\": \"<TEMPLATEID>\"}" }
+```
+
+Header and footer output is cached for every visitor: put anything per user inside `{% substitution %}`.
+
 ## PowerShell caveat
 
 If you must patch from PowerShell instead of Python, read the source with
