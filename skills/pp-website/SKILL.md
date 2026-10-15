@@ -86,6 +86,10 @@ Required flags:
 > [Websites - Create Website](https://learn.microsoft.com/rest/api/power-platform/powerpages/websites/create-website),
 > [Enhanced data model](https://learn.microsoft.com/power-pages/admin/enhanced-data-model),
 > [Create a site with Power Pages](https://learn.microsoft.com/power-pages/getting-started/create-manage).
+> **Microsoft confirmed this as Known issue 6718929** ("Power Page Create Website Gateway API", Power Platform
+> admin center → Support → Known issues, Active, all geos): the Gateway API accepts only three **Standard** package
+> names (`DefaultPortalTemplate`, `PowerPortals_ProgramRegistration`, `PowerPortals_BookMeeting`), so an Enhanced
+> site can't be provisioned through the API. Re-check the issue status before relying on pac or the API.
 > Every content skill in this plugin needs **Enhanced**, so:
 >
 > 1. **Recommended:** create the site from the Power Pages home page (https://make.powerpages.microsoft.com,
