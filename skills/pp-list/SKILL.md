@@ -125,6 +125,22 @@ row/toolbar actions open the right forms/pages, and alternate views display. A l
 records the user can **Read** — an empty list is usually a missing **table permission + web role**
 (`pp-tablepermission` / `pp-webrole`), not a broken view.
 
+## Gotchas from live builds (verified 2026-10-14)
+
+- **`views` format.** `mspp_views` (component key `views`) must be the Adxstudio ViewMetadata JSON **string**;
+  a comma list or a JSON array is rejected ("Invalid views content") or loads with "Sequence contains no
+  matching element". Copy this shape (learned from the Power Pages Management app), and put the ids comma
+  separated in `view`:
+  ```json
+  {"$type":"Adxstudio.Xrm.Web.UI.JsonConfiguration.ViewMetadata, Adxstudio.Xrm","Views":[
+    {"$type":"Adxstudio.Xrm.Web.UI.JsonConfiguration.View, Adxstudio.Xrm","ViewId":"<savedqueryid>",
+     "DisplayName":[{"$type":"Adxstudio.Xrm.Web.UI.WebForms.LanguageResources, Adxstudio.Xrm","LCID":1033,"Value":""}]}]}
+  ```
+- **Include the list by id:** `{% include 'entity_list' key: '<list id>' %}`. By name it failed with
+  "Sequence contains no matching element".
+- **`websiteid` in the component JSON**, as for forms and permissions.
+- Not sure of a shape? Set it once in the **Power Pages Management** app, then read the component back.
+
 ## Field & option reference
 
 - Table: `mspp_entitylist` (+ `savedquery` views). Scope by `_mspp_websiteid_value`. Confirm exact
