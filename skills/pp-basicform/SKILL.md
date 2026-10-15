@@ -175,6 +175,19 @@ Permissions* form flag — use real table permissions.
 Flush (`pp-cache`), load the page, and **submit**: confirm the record writes, success/redirect
 fires, validation and file upload work, and actions respect permissions.
 
+## Gotchas from live builds (verified 2026-10-14)
+
+- **`websiteid` in the component JSON.** A form created through `mspp_entityforms` lacks `websiteid` in its
+  backing `powerpagecomponent.content`. Write it, the same as for table permissions (`pp-tablepermission`).
+- **Set value on save needs the column on the form.** Put columns like priority, origin or visibility in a
+  hidden section (`visible="false"`) of the Dataverse form, then add the metadata row.
+- **Lookup as dropdown:** the looked up table's permission needs **read and append**, or the dropdown shows only
+  `Select`.
+- **Custom JavaScript** goes in the form's `registerstartupscript` (component JSON key). Field labels are
+  `#<logicalname>_label`; the platform puts `label="Select"` on blank `<option>`s, which wins over their text, so
+  set `label` and `aria-label` when you rename them. Wrap `entityFormClientValidate` to change values on submit.
+- Render it with `{% entityform name: '<form name>' %}` in a web template.
+
 ## Field & option reference
 
 - Tables: `mspp_entityform`, `mspp_entityformmetadata` (+ notes on `annotation`). Scope by
