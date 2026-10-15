@@ -161,6 +161,16 @@ python scripts/update_web_file.py --url <DATAVERSE_URL> \
   pattern), else reads a bearer token from `DATAVERSE_TOKEN`. `DATAVERSE_URL` from `--url` or the
   env var.
 
+## Site wide custom CSS: display order 100 (verified 2026-10-14)
+
+A web file under Home whose `displayorder` is set loads on every page. Give the site's custom CSS
+**display order 100** so it loads after `bootstrap.min.css` (1), `theme.css` (2) and `portalbasictheme.css` (10)
+and wins the cascade. A low number loads it before portalbasictheme, which then overrides it.
+
+- `portalbasictheme.css` uses `!important` for some rules, for example `::placeholder { color: black !important }`.
+  An override of those needs `!important` too (it then wins by loading later and by specificity).
+- An existing web file keeps its order: change `displayorder` in the component `content` JSON.
+
 ## Field & option reference
 
 - Table: `powerpagecomponent`; web file = `powerpagecomponenttype eq 3`; scope by
