@@ -143,6 +143,31 @@ Each returned row is one (permission, web role) pair. Map `mspp_webroleid` back 
 If the intersect returns rows but the portal still 403s, re-check: the user actually **holds**
 that web role, the **scope** covers the record, and the needed **flag** is set.
 
+## Step 4 — Make the binding visible to the runtime (verified 2026-10-14)
+
+> ⚠️ **A permission created through `mspp_entitypermissions` can be bound and still not work.** The intersect
+> query above shows the binding, but the running site reads the backing `powerpagecomponent.content` JSON, and
+> rows created through the virtual table get **neither `websiteid` nor the role list** there. Symptom: every
+> Liquid FetchXML and Web API read returns nothing, even though the permission and binding look right.
+
+After Step 2, read the component and write both keys if they're missing (the same shape pac and the studio
+produce):
+
+```
+GET   /api/data/v9.2/powerpagecomponents(<PERMID>)?$select=content
+PATCH /api/data/v9.2/powerpagecomponents(<PERMID>)
+{ "content": "{...existing keys..., \"websiteid\": \"<SITEID>\", \"adx_entitypermission_webrole\": [\"<WEBROLEID>\", ...]}" }
+```
+
+- Updating an existing permission through `PATCH mspp_entitypermissions(<id>)` fails with `0x80040224`
+  ("The given key was not present in the dictionary"). Change flags and scope in the component JSON instead.
+- The permission's name column is `mspp_entityname`, not `mspp_name`.
+- An intersect (N:N) table can't get a permission (`Expected non-empty Guid`). Read related rows through the
+  relationship in Liquid instead of linking the intersect table.
+- A lookup rendered as a **dropdown** on a basic form needs **read and append** on the looked up table's
+  permission. Read alone renders an empty list.
+- Then restart the site or flush the cache (see `pp-cache`).
+
 ## Parent–child permission chains (related tables)
 
 Portal pages that show a parent with its children (an order with its lines, a case with its
