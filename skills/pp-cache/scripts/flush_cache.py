@@ -1,94 +1,83 @@
 #!/usr/bin/env python
-"""Flush a Power Pages portal cache by hitting <domain>/_services/about.
+"""Refresh a Power Pages portal cache.
 
-Resolves the portal domain from the site record (or takes it directly), then issues
-an authenticated GET to /_services/about to nudge the portal to re-read components
-from Dataverse. Use after PATCHing web templates, web files, site settings, table
-permissions, or web pages.
+Default: restart the site with `pac power-pages restart-website`, which makes every instance
+re-read components from Dataverse (about two minutes). It needs pac signed in to the site's
+environment, not a portal session.
 
-Auth (in order):
-  1. a workspace scripts/auth.py exposing get_token()  (the dv-connect pattern), or
-  2. env var DATAVERSE_TOKEN (a bearer token).
-DATAVERSE_URL comes from --url or the env var of the same name.
+/_services/about only clears the cache when a contact with the Administrators web role selects
+Clear cache in a signed in browser; a script GET of that URL does nothing. --about-only prints
+that URL so a portal admin can do it by hand.
+
+--site is the portal id (the `id` column of `pac power-pages get-websites`), not the Dataverse
+powerpagesite record id (`websiteRecordId`).
 
 Usage:
-  python flush_cache.py --url https://org.crm.dynamics.com --site <SITEID>
-  python flush_cache.py --url https://org.crm.dynamics.com --domain contoso.powerappsportals.com
+  python flush_cache.py --site <SITEID>                      # restart (default)
+  python flush_cache.py --site <SITEID> --about-only         # print the admin URL only
+  python flush_cache.py --site <SITEID> --environment <url>  # target another environment
 """
 import argparse
-import os
+import json
+import shutil
+import subprocess
 import sys
 
-import requests
-import urllib3
 
-urllib3.disable_warnings()
-
-
-def get_token():
-    for p in (os.getcwd(), os.path.join(os.getcwd(), "scripts")):
-        if os.path.exists(os.path.join(p, "auth.py")):
-            sys.path.insert(0, p)
-            try:
-                from auth import get_token as _gt, load_env  # type: ignore
-                load_env()
-                return _gt()
-            except Exception:
-                pass
-    t = os.environ.get("DATAVERSE_TOKEN")
-    if t:
-        return t
-    sys.exit("No auth: provide a workspace scripts/auth.py (get_token) or set DATAVERSE_TOKEN.")
+def run_pac(*args):
+    """Run pac and return (returncode, output). Exits only if pac isn't installed."""
+    exe = shutil.which("pac")
+    if not exe:
+        sys.exit("pac (Power Platform CLI) isn't on PATH. Install it, or use design studio Sync.")
+    r = subprocess.run([exe, *args], capture_output=True, text=True)
+    return r.returncode, (r.stdout or "") + (r.stderr or "")
 
 
-def resolve_domain(api, headers, site_id):
-    """Return the primarydomainname for a powerpagesite (or the first site if site_id is None)."""
-    params = {"$select": "name,primarydomainname"}
-    if site_id:
-        params["$filter"] = f"powerpagesiteid eq {site_id}"
-    r = requests.get(f"{api}/powerpagesites", headers=headers, params=params, verify=False)
-    r.raise_for_status()
-    rows = r.json().get("value", [])
-    if not rows:
-        sys.exit("Could not resolve a portal domain — pass --domain explicitly.")
-    dom = rows[0].get("primarydomainname")
-    if not dom:
-        sys.exit("Site has no primarydomainname — pass --domain explicitly.")
-    print(f"Resolved domain: {dom}  (site: {rows[0].get('name')})")
-    return dom
+def env_args(environment):
+    return ["--environment", environment] if environment else []
+
+
+def site_url(site_id, environment):
+    """Best effort: the site's websiteUrl from pac, for the /_services/about URL."""
+    rc, out = run_pac("power-pages", "get-website-by-id", "--id", site_id, *env_args(environment), "--json")
+    if rc != 0:
+        return ""
+    try:
+        return (json.loads(out[out.index("{"):]).get("websiteUrl") or "").rstrip("/")
+    except (ValueError, AttributeError):
+        return ""
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--url", default=os.environ.get("DATAVERSE_URL"),
-                    help="Dataverse env URL (or DATAVERSE_URL env var)")
-    ap.add_argument("--site", help="powerpagesiteid (to resolve the domain)")
-    ap.add_argument("--domain", help="portal domain, e.g. contoso.powerappsportals.com "
-                                     "(skips Dataverse lookup)")
+    ap.add_argument("--site", required=True,
+                    help="portal id: the `id` column of `pac power-pages get-websites`")
+    ap.add_argument("--environment", help="Dataverse environment URL or id (default: active pac auth)")
+    ap.add_argument("--about-only", action="store_true", help="print the /_services/about URL, don't restart")
     args = ap.parse_args()
-    if not args.url and not args.domain:
-        sys.exit("Provide --url (to resolve the domain) or --domain directly.")
 
-    domain = args.domain
-    if not domain:
-        token = get_token()
-        api = args.url.rstrip("/") + "/api/data/v9.2"
-        headers = {"Authorization": f"Bearer {token}", "Accept": "application/json",
-                   "OData-MaxVersion": "4.0", "OData-Version": "4.0"}
-        domain = resolve_domain(api, headers, args.site)
+    rc, out = run_pac("auth", "who")
+    if rc != 0:
+        sys.exit(f"pac isn't signed in. Run `pac auth create` first.\n{out.strip()}")
+    print(out.strip())
 
-    about = f"https://{domain}/_services/about"
-    print(f"Flushing via {about} ...")
-    try:
-        r = requests.get(about, timeout=30, verify=False)
-        print(f"  HTTP {r.status_code}")
-        if r.status_code >= 400:
-            print("  Non-2xx — the portal may still have flushed; verify by reloading the page.")
-    except requests.exceptions.RequestException as e:
-        sys.exit(f"Could not reach {about}: {e}\n"
-                 f"If the host doesn't resolve from this machine, use Power Pages Studio -> "
-                 f"Sync / Clear cache instead.")
-    print("Done. Reload a real page (not the API) to confirm; hard-refresh for CSS/JS changes.")
+    url = site_url(args.site, args.environment)
+    if url:
+        print(f"Admin clear (Administrators web role, signed in): {url}/_services/about")
+    else:
+        print(f"Couldn't look up site {args.site}. Check it's the portal `id` from "
+              "`pac power-pages get-websites`, not the powerpagesite record id.")
+        if args.about_only:
+            sys.exit(1)
+    if args.about_only:
+        return
+
+    print(f"Restarting site {args.site} ...")
+    rc, out = run_pac("power-pages", "restart-website", "--id", args.site, *env_args(args.environment))
+    print(out.strip())
+    if rc != 0:
+        sys.exit(f"restart-website failed (exit {rc}).")
+    print("Done. Reload a real page in about two minutes; hard refresh for CSS and JS changes.")
 
 
 if __name__ == "__main__":

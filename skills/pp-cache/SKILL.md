@@ -1,85 +1,98 @@
 ---
 name: pp-cache
-description: "Invalidate the Power Pages portal cache so component changes (web templates, web files, content snippets, site settings, table permissions, web pages) become visible. A PATCH to Dataverse updates the record but the running portal keeps serving the cached version until the cache is flushed. WHEN: my change isn't showing on the portal, clear Power Pages cache, flush portal cache, portal still shows old version, invalidate cache, changes not appearing after edit, /_services/about, force portal to refresh."
+description: "Make Power Pages component changes visible by refreshing the portal's server cache (web templates, web files, content snippets, site settings, table permissions, web pages, page access rules). A PATCH to Dataverse updates the record but the running portal keeps serving the cached version. Default: restart the site with pac power-pages restart-website (reaches every instance, no portal sign in). Alternative: Clear cache on /_services/about, which only works for a signed in contact with the Administrators web role. WHEN: my change isn't showing on the portal, clear Power Pages cache, flush portal cache, portal still shows old version, invalidate cache, changes not appearing after edit, /_services/about, restart the site, force portal to refresh."
 license: MIT
 metadata:
   author: Victor Dantas
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
-# Flush the Power Pages portal cache
+# Refresh the Power Pages portal cache
 
-On a traditional (enhanced-data-model) Power Pages site, the running portal serves components
-(web templates, web files, content snippets, site settings, table permissions, web pages) from a
-**server-side cache**. When you PATCH a component directly in Dataverse — as every editing skill in
-this plugin does — the record changes immediately, but visitors keep seeing the **cached** version
-until you invalidate it. This is the single most common "I deployed but nothing changed" cause.
+On a traditional (enhanced data model) Power Pages site, the running portal serves components
+(web templates, web files, content snippets, site settings, table permissions, page access rules,
+web pages) from a **server-side cache**. When you PATCH a component in Dataverse, as every editing
+skill in this plugin does, the record changes at once but visitors keep seeing the **cached**
+version until the cache is refreshed.
 
 See `../../references/traditional-site-editing-model.md` for the editing model these changes come from.
 
 ## When you need it
 
-After any of: `pp-webtemplate`, `pp-webfile` (also needs a URL cache-buster — see that
-skill), `pp-serverlogic`, `pp-webapi` (site settings), `pp-tablepermission`, `pp-webpage`
-(`mspp_copy` PUTs do **not** auto-bust), or editing content snippets / site settings.
+After `pp-webtemplate`, `pp-webfile` (also bump the URL cache buster, see that skill),
+`pp-serverlogic`, `pp-webapi` (site settings), `pp-tablepermission`, `pp-pageaccessrule`,
+`pp-webpage` (`mspp_copy` PUTs do **not** auto-bust), or content snippet and site setting edits.
 
-## How to flush
+## Choose a method
 
-### 1. `/_services/about` (fastest, no tooling)
-Open the portal at **`https://<portal-domain>/_services/about`** while signed in. The page shows
-the site/version and exposes a **Clear cache** action. Hitting it forces the portal to re-read
-components from Dataverse. A plain authenticated `GET` of that URL is enough to nudge it in most
-configurations.
+| Method | Needs | Reaches | Use when |
+|---|---|---|---|
+| **1. Restart the site** (default) | `pac auth` on the site's environment | every instance | after any change, from an agent or a script |
+| 2. Clear cache on `/_services/about` | a browser session signed in as a contact with the **Administrators** web role | the instance that served the request | you're already signed in as a portal admin and want it now |
+| 3. Power Pages design studio **Sync** | maker access to the site | the studio preview and the site | you're working in the studio anyway |
 
-Find the portal domain from the site record:
+### 1. Restart the site (default)
+
 ```
-GET /api/data/v9.2/powerpagesites?$select=name,primarydomainname
-      # or the enhanced-model website:
-GET /api/data/v9.2/mspp_websites?$select=mspp_name
+pac power-pages restart-website --id <SITEID>
 ```
-Match the site you edited (a tenant can host several). Use its `primarydomainname`
-(e.g. `contoso.powerappsportals.com`) or the site's custom domain.
 
-### 2. Power Pages Studio / Maker portal
-In **Power Pages Studio** for the site, use **Sync** / **Clear cache** (or restart the site).
-This is the reliable fallback when `/_services/about` isn't reachable from your machine.
+The site comes back in about **two minutes**. Every instance re-reads components from Dataverse,
+which a single `/_services/about` clear can't guarantee on a scaled-out site. Confirm the active
+`pac auth` environment first (`pac auth who`), or pass `--environment <url-or-id>`.
 
-### 3. Browser hard-refresh (client cache only)
-For **web files** (CSS/JS), the *browser* also caches by URL. Even after a server flush, a client
-may hold the old file. Bump the `?v=` cache-buster where the file is referenced (see
-`pp-webfile`) so clients refetch — a server flush alone won't force that.
+`<SITEID>` is the **portal id**: the `id` column of
+`pac power-pages get-websites --columns id,name,websiteUrl` (see `pp-website`). It is **not** the
+Dataverse `powerpagesite` record id (`websiteRecordId` in that output, `powerpagesiteid` in the
+Web API); passing that one fails.
+
+### 2. Clear cache on `/_services/about` (portal admins only)
+
+1. Open `<websiteUrl>/_services/about` in a browser **signed in to the portal** (`websiteUrl` comes
+   from `pac power-pages get-website-by-id --id <SITEID> --json`, or a custom domain).
+2. The **Clear cache** button only appears for a contact with the **Administrators** web role.
+   Without that role the page shows version details only, and nothing is cleared.
+3. Select **Clear cache**. A plain `GET` of the URL, signed in or not, does **not** clear it.
+
+Need the role? Assign the signed in contact to the **Administrators** web role with `pp-webrole`
+(dev and test sites only; never grant it to real users to work around caching).
+
+### 3. Design studio Sync
+
+In Power Pages design studio for the site, select **Sync**. Reliable when the portal host
+doesn't resolve from your machine.
+
+### Browser cache (CSS and JS)
+
+A server refresh doesn't reach a browser that already holds the old file. Bump the `?v=` cache
+buster where the file is referenced (see `pp-webfile`), then hard refresh.
 
 ## Bundled helper
 
-`scripts/flush_cache.py` resolves the site's domain and issues the `/_services/about` request.
+`scripts/flush_cache.py` restarts the site through pac (method 1) and prints the
+`/_services/about` URL for method 2. Needs `pac` on PATH and signed in (`pac auth create`); use
+`python3` on macOS and Linux.
 
 ```
-python scripts/flush_cache.py --url <DATAVERSE_URL> [--site <SITEID>] [--domain <portal-domain>]
+python scripts/flush_cache.py --site <SITEID>                      # restart (default)
+python scripts/flush_cache.py --site <SITEID> --about-only         # just print the admin URL
+python scripts/flush_cache.py --site <SITEID> --environment <url>  # target another environment
 ```
-
-Auth follows the shared pattern (workspace `scripts/auth.py` `get_token()`, else `DATAVERSE_TOKEN`).
 
 ## Verify
 
-Reload the changed page (a real page load, not just the API). If it still shows the old content:
-1. Confirm you flushed the **right site's** domain.
-2. For CSS/JS, confirm the **`?v=` cache-buster** was bumped (browser cache), then hard-refresh.
-3. Confirm the component was actually **Published** and belongs to the same website.
+Reload a real page (not the API) after the restart finishes. If it still shows the old content:
+1. Confirm you restarted or cleared the **right site** (a tenant can host several).
+2. For CSS and JS, confirm the `?v=` cache buster was bumped, then hard refresh.
+3. Confirm the component was saved to the same website and, where it applies, published.
 
-## Notes / gotchas
+## Notes and gotchas
 
-- The portal hostname may not resolve from every network (dev boxes, locked-down VNets). If the
-  `GET` can't reach it, use Studio's **Clear cache** instead.
-- Cache flush is **not** instantaneous everywhere — give it a few seconds and reload.
-- Flushing does not fix a component that was saved to the **wrong site** or left **unpublished** —
-  check those first if a flush "doesn't work".
-
-- **`/_services/about` only clears the cache for a signed in portal admin, and only on the instance that
-  served the request.** On a multi instance site, reloads can flip between old and new content for minutes.
-  Reliable in a dev environment: `pac power-pages restart-website --id <portal id>` (async, about 1 to 2
-  minutes before it serves again). Verified 2026-10-14.
-- New table permissions and site settings follow the same rule: restart before you judge whether they work.
-
-## Microsoft docs & shared references
-
-- List/form reads are cached (community reports ~15 min); **portal writes clear the cache, but Dataverse-side changes (flows, plugins, model-driven app edits) do not** — design for that lag rather than cache-busting hacks.
+- `/_services/about` is per instance: on a scaled-out site, other instances keep their cache.
+- New table permissions, page access rules, and site settings follow the same rule: refresh the
+  cache before you judge whether they work.
+- Don't loop restarts: each one takes the site offline for a minute or two.
+- Restarting doesn't fix a component saved to the **wrong site**; check that first.
+- List and form reads are cached (community reports about 15 minutes). Portal writes clear the
+  cache, but Dataverse side changes (flows, plugins, model driven app edits) don't; design for that
+  lag rather than restarting on every edit.
