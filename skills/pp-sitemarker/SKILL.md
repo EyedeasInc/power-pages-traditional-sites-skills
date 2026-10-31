@@ -1,6 +1,6 @@
 ---
 name: pp-sitemarker
-description: "Create, edit, and delete site markers (mspp_sitemarker) on a traditional (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — named references to a web page that Liquid and settings resolve by name ({{ sitemarkers[\"Name\"].url }}), so links keep working when a page's URL changes. WHEN: add a site marker, create a named page reference, mspp_sitemarker, link by name instead of URL, make a link survive a URL change, resolve a page URL in Liquid, sitemarkers, point a template at a page by marker."
+description: "Create, edit, and delete site markers (mspp_sitemarker) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — named references to a web page that Liquid and settings resolve by name ({{ sitemarkers[\"Name\"].url }}), so links keep working when a page's URL changes. WHEN: add a site marker, create a named page reference, mspp_sitemarker, link by name instead of URL, make a link survive a URL change, resolve a page URL in Liquid, sitemarkers, point a template at a page by marker."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,13 +9,13 @@ metadata:
 
 # Site markers on a Power Pages site — create, edit, delete
 
-Manage **site markers** (`mspp_sitemarker`) on a traditional (enhanced-data-model, `mspp_*`)
+Manage **site markers** (`mspp_sitemarker`) on a non-SPA (enhanced-data-model, `mspp_*`)
 Power Pages site through the Dataverse Web API. A site marker is a **named pointer to a web page**
 that Liquid and configuration resolve by name — so templates link to a page by a **stable marker
 name** instead of a hard-coded URL, and the link keeps working when the page's `mspp_partialurl`
 changes.
 
-> Read `../../references/traditional-site-editing-model.md` first. A marker is a name → page mapping;
+> Read `../../references/non-spa-site-editing-model.md` first. A marker is a name → page mapping;
 > templates consume it in Liquid. Pair with `pp-webpage` (the target page) and `pp-webtemplate`
 > (where the marker is used).
 

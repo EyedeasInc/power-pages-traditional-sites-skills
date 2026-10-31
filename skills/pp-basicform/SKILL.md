@@ -1,6 +1,6 @@
 ---
 name: pp-basicform
-description: "Create, edit, and delete basic forms (mspp_entityform + mspp_entityformmetadata) on a traditional (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — a portal form bound to a Dataverse table that inserts, edits, or read-only-displays a single record from a Dataverse main form, with the full configuration surface: record source, form options (captcha, validation, tabs-as-steps), on-success (message/redirect), Additional Settings (associate portal user, file upload / Attach File, associated table reference, record actions), per-field metadata (control styles, prepopulate, set-value-on-save, validation, notes/timeline), custom JavaScript, and AI form-fill. WHEN: add a basic form, create/edit a portal form, insert/edit/read-only form, file upload on a form, attach file, form captcha, redirect on submit, prefill a field, required field, custom validation, add a delete/workflow action to a form, entityform, mspp_entityform, AI form fill, render a form with Liquid entityform."
+description: "Create, edit, and delete basic forms (mspp_entityform + mspp_entityformmetadata) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — a portal form bound to a Dataverse table that inserts, edits, or read-only-displays a single record from a Dataverse main form, with the full configuration surface: record source, form options (captcha, validation, tabs-as-steps), on-success (message/redirect), Additional Settings (associate portal user, file upload / Attach File, associated table reference, record actions), per-field metadata (control styles, prepopulate, set-value-on-save, validation, notes/timeline), custom JavaScript, and AI form-fill. WHEN: add a basic form, create/edit a portal form, insert/edit/read-only form, file upload on a form, attach file, form captcha, redirect on submit, prefill a field, required field, custom validation, add a delete/workflow action to a form, entityform, mspp_entityform, AI form fill, render a form with Liquid entityform."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -10,11 +10,11 @@ metadata:
 # Basic forms on a Power Pages site — full configuration
 
 Manage **basic forms** (`mspp_entityform`, with per-field `mspp_entityformmetadata` and related
-config) on a traditional (enhanced-data-model, `mspp_*`) Power Pages site through the Dataverse
+config) on a non-SPA (enhanced-data-model, `mspp_*`) Power Pages site through the Dataverse
 Web API. A basic form renders **one Dataverse record** for **Insert / Edit / ReadOnly** on the
 portal, reusing a **Dataverse main form's** layout — the no-code way to collect or show a record.
 
-> Read `../../references/traditional-site-editing-model.md` first. The full surface is: the **form**
+> Read `../../references/non-spa-site-editing-model.md` first. The full surface is: the **form**
 > (`mspp_entityform`) → **Form Options / On Success / Additional Settings** (columns + related
 > config on the form) → **metadata rows** (`mspp_entityformmetadata`, per field/section/tab/notes)
 > → **Custom JavaScript** → placed on a page. Most settings below are **columns on

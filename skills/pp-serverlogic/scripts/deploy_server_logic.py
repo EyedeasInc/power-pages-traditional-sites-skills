@@ -1,5 +1,5 @@
 """
-deploy_server_logic.py — Deploy one server-logic JavaScript file to a traditional
+deploy_server_logic.py — Deploy one server-logic JavaScript file to a non-SPA
 (enhanced-data-model) Power Pages site via the `powerpagecomponent` storage model.
 
 Server logic is server-side JavaScript that runs securely on the Power Pages runtime.

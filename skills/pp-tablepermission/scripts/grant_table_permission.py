@@ -2,7 +2,7 @@
 """
 grant_table_permission.py
 
-Create a Power Pages **table permission** (`mspp_entitypermission`) on a traditional
+Create a Power Pages **table permission** (`mspp_entitypermission`) on a non-SPA
 (enhanced-data-model, mspp_*) site and **bind it to one or more web roles** via the
 `mspp_entitypermission_webrole` many-to-many intersect. Idempotent.
 

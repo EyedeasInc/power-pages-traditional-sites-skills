@@ -1,6 +1,6 @@
 ---
 name: pp-webtemplate
-description: "Create, edit, read, and delete web templates (powerpagecomponent type 8, content = {\"source\"}) on a traditional (enhanced-data-model, mspp_*) Power Pages site by patching the LIVE component through the Dataverse Web API — GET live, robust-parse the content JSON, match-once-guarded edit, PATCH one component (never a batch upload). WHEN: create a web template, add a new template, edit a web template, change portal HTML/Liquid, update or patch web template source, read a template source, delete a web template, list a site web templates, fix portal markup, modify a liquid template, tweak rendered output, apply a code fix to an mspp_ web template."
+description: "Create, edit, read, and delete web templates (powerpagecomponent type 8, content = {\"source\"}) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site by patching the LIVE component through the Dataverse Web API — GET live, robust-parse the content JSON, match-once-guarded edit, PATCH one component (never a batch upload). WHEN: create a web template, add a new template, edit a web template, change portal HTML/Liquid, update or patch web template source, read a template source, delete a web template, list a site web templates, fix portal markup, modify a liquid template, tweak rendered output, apply a code fix to an mspp_ web template."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -13,7 +13,7 @@ Change the Liquid/HTML **source** of a web template on an **enhanced-data-model*
 Power Pages site by patching the single `powerpagecomponent` record directly through the
 Dataverse Web API. No batch upload, no `pac pages upload` — you touch exactly one row.
 
-> Read `../../references/traditional-site-editing-model.md` first. This skill assumes its golden
+> Read `../../references/non-spa-site-editing-model.md` first. This skill assumes its golden
 > rules: **read live before you edit**, **patch components individually**, **parse `content`
 > robustly**, **match-once guard**, and **flush cache after**.
 
@@ -179,5 +179,5 @@ comes from `--url` or the env var of the same name.
 ## Microsoft docs & shared references
 
 - Build reusable components with the official **`{% manifest %}`** tag (`type: "Functional"`, `params` as strings, no nesting, copy-to-extend); consume via `{% include 'Name' p:'v' %}`.
-- To design a component before implementing, use the **`powerpages-traditional-site:web-template-architect`** agent.
+- To design a component before implementing, use the **`powerpages-non-spa-site:web-template-architect`** agent.
 - Full detail: `../../references/web-template-components.md`.

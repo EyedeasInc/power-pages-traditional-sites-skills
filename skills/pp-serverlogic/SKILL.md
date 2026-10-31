@@ -1,6 +1,6 @@
 ---
 name: pp-serverlogic
-description: "Create, edit, deploy, and remove server logic — server-side JavaScript that runs securely on the Power Pages runtime — on a traditional (enhanced-data-model, mspp_*) site through the powerpagecomponent storage model. A server logic is TWO powerpagecomponent rows: a type-35 METADATA record and a type-15 CODE record whose content is JSON {\"source\": \"<js>\", \"webroles\": [...]}. WHEN: add, create, edit, or update server logic, deploy server-side JavaScript, create or change a Power Pages server script, add an API endpoint on the portal, push server logic, change the web roles on a server script, delete server logic, move browser code to the server, run code securely on the runtime, create a server-side handler."
+description: "Create, edit, deploy, and remove server logic — server-side JavaScript that runs securely on the Power Pages runtime — on a non-SPA (enhanced-data-model, mspp_*) site through the powerpagecomponent storage model. A server logic is TWO powerpagecomponent rows: a type-35 METADATA record and a type-15 CODE record whose content is JSON {\"source\": \"<js>\", \"webroles\": [...]}. WHEN: add, create, edit, or update server logic, deploy server-side JavaScript, create or change a Power Pages server script, add an API endpoint on the portal, push server logic, change the web roles on a server script, delete server logic, move browser code to the server, run code securely on the runtime, create a server-side handler."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -10,12 +10,12 @@ metadata:
 # Server logic on a Power Pages site — create, edit, deploy, remove
 
 Create and deploy **server logic** — server-side JavaScript that runs on the Power Pages
-runtime — on a traditional **enhanced-data-model** site by writing the `powerpagecomponent`
+runtime — on a non-SPA **enhanced-data-model** site by writing the `powerpagecomponent`
 records directly. Server logic executes **server-side** (secrets, privileged Dataverse calls,
 validation the browser can't be trusted to do), and is invoked from the site. It is the
-traditional-site analog of a code-site's server-side handler / API endpoint.
+non-SPA analog of a code-site's server-side handler / API endpoint.
 
-Read `../../references/traditional-site-editing-model.md` first — this skill assumes the shared
+Read `../../references/non-spa-site-editing-model.md` first — this skill assumes the shared
 `powerpagecomponent` model, the read-live-first rule, and the auth pattern described there.
 
 ## The model: server logic is TWO components

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""PostToolUse(Skill) hook for powerpages-traditional-site.
+"""PostToolUse(Skill) hook for powerpages-non-spa-site.
 
 After a content-mutating pp-* skill runs, add a short reminder that mspp_ changes are cached
 (flush with /pp-cache) and that data is only reachable when table permissions + web roles allow it.

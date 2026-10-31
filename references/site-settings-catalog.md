@@ -1,6 +1,6 @@
 # Site settings catalog (headers, security, and useful lesser-known settings)
 
-Shared reference of high-value `mspp_sitesetting` records for a traditional site. Used by
+Shared reference of high-value `mspp_sitesetting` records for a non-SPA site. Used by
 `pp-headers`, `pp-website`, `pp-webapi`, `pp-basicform`.
 
 > **Authority:** Microsoft Learn for the header/SameSite/search settings (linked inline). The

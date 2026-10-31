@@ -1,10 +1,10 @@
-# Traditional (enhanced-data-model) Power Pages — editing model
+# Non-SPA (enhanced-data-model) Power Pages — editing model
 
 Shared backbone for every skill in this plugin. Read this first; individual skills assume it.
 
-## What "traditional site" means here
+## What "non-SPA site" means here
 
-A **traditional Power Pages site** is a Studio/Liquid site built on the **enhanced data model**
+A **non-SPA Power Pages site** is a Studio/Liquid site built on the **enhanced data model**
 (`mspp_*` Dataverse tables) — web pages, web templates, web files, content snippets, site
 settings, web roles, table permissions, and Liquid. This is **not** a code site (React/Vite SPA);
 those are covered by Microsoft's `power-pages` code-site plugin. This plugin fills the gap for the

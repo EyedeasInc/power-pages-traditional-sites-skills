@@ -1,24 +1,24 @@
 {
-  "name": "powerpages-traditional-site",
+  "name": "powerpages-non-spa-site",
   "owner": {
     "name": "Eyedeas Inc",
     "url": "https://github.com/EyedeasInc"
   },
   "metadata": {
-    "description": "Power Pages Traditional (non-code) site skills for Claude Code and GitHub Copilot.",
-    "version": "0.9.2"
+    "description": "Power Pages non-SPA site skills for Claude Code and GitHub Copilot.",
+    "version": "0.10.0"
   },
   "plugins": [
     {
-      "name": "powerpages-traditional-site",
+      "name": "powerpages-non-spa-site",
       "source": "./",
-      "description": "Build, integrate, and secure traditional Power Pages sites (enhanced data model, mspp_*) through the Dataverse Web API and the pac CLI.",
-      "version": "0.9.2",
+      "description": "Build, integrate, and secure non-SPA Power Pages sites (enhanced data model, mspp_*) through the Dataverse Web API and the pac CLI.",
+      "version": "0.10.0",
       "author": {
         "name": "Victor Dantas"
       },
       "license": "MIT",
-      "repository": "https://github.com/EyedeasInc/power-pages-traditional-sites-skills",
+      "repository": "https://github.com/EyedeasInc/power-pages-non-spa-sites-skills",
       "category": "development",
       "keywords": [
         "power pages",

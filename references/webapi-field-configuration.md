@@ -1,7 +1,7 @@
 # Web API field configuration (least-privilege columns)
 
 Shared reference for exposing Dataverse data through the Power Pages **portal Web API** (`/_api/*`)
-on a traditional (enhanced-data-model) site. Used by `pp-webapi`, `pp-securityreview`,
+on a non-SPA (enhanced-data-model) site. Used by `pp-webapi`, `pp-securityreview`,
 `pp-columnpermission`, and the `security-auditor` agent.
 
 > **Authority:** Microsoft Learn is the source of truth here. Community notes are labelled.

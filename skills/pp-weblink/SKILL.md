@@ -1,6 +1,6 @@
 ---
 name: pp-weblink
-description: "Create, edit, reorder, and delete navigation on a traditional (enhanced-data-model, mspp_*) Power Pages site — web link sets (mspp_weblinkset) and the web links (mspp_weblink) inside them, including nested sub-menus, page links, and external URLs — through the Dataverse Web API. The page template's header/footer renders a web link set; this is how the menu is managed. WHEN: add a navigation item, edit the portal menu, add a nav link, reorder menu items, create a web link set, add a dropdown/sub-menu, link the nav to a page, add an external link to the menu, remove a nav item, manage mspp_weblink, change the header/footer menu."
+description: "Create, edit, reorder, and delete navigation on a non-SPA (enhanced-data-model, mspp_*) Power Pages site — web link sets (mspp_weblinkset) and the web links (mspp_weblink) inside them, including nested sub-menus, page links, and external URLs — through the Dataverse Web API. The page template's header/footer renders a web link set; this is how the menu is managed. WHEN: add a navigation item, edit the portal menu, add a nav link, reorder menu items, create a web link set, add a dropdown/sub-menu, link the nav to a page, add an external link to the menu, remove a nav item, manage mspp_weblink, change the header/footer menu."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,12 +9,12 @@ metadata:
 
 # Navigation — web link sets & web links on a Power Pages site
 
-Manage a traditional (enhanced-data-model, `mspp_*`) Power Pages site's **navigation** — the
+Manage a non-SPA (enhanced-data-model, `mspp_*`) Power Pages site's **navigation** — the
 **web link set** (`mspp_weblinkset`) rendered by the page template's header/footer, and the
 **web links** (`mspp_weblink`) inside it — through the Dataverse Web API. Create sets, add/edit/
 reorder/remove links, and build nested (dropdown) menus.
 
-> Read `../../references/traditional-site-editing-model.md` first (component model, read-live-first,
+> Read `../../references/non-spa-site-editing-model.md` first (component model, read-live-first,
 > cache flush). `pp-webpage` creates a page *and* drops one link into the primary set as part of
 > Step 4; use **this** skill when the job is the navigation itself — a new menu, reordering,
 > sub-menus, external links, or footer links.

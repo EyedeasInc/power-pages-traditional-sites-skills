@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Download a traditional Power Pages site to disk via `pac pages download`.
+"""Download a non-SPA Power Pages site to disk via `pac pages download`.
 
 A thin, deterministic wrapper around the Power Platform CLI so an agent (or a CI job)
 can snapshot a site the same way every time — for backup, diff, or source control —

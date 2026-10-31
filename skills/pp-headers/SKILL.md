@@ -1,6 +1,6 @@
 ---
 name: pp-headers
-description: "Inspect and configure the security response headers a traditional (enhanced-data-model, mspp_*) Power Pages site sends to browsers — Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, HSTS, referrer/permissions policy, and cookie/CORS behavior — through the mspp_sitesetting records that drive them, then verify the live responses. WHEN: configure security headers, add or fix a Content Security Policy, set CSP on a portal, add X-Frame-Options / HSTS / nosniff, fix CSP errors, harden browser headers, clickjacking protection, cookie SameSite, manage-headers, why is my portal missing security headers."
+description: "Inspect and configure the security response headers a non-SPA (enhanced-data-model, mspp_*) Power Pages site sends to browsers — Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, HSTS, referrer/permissions policy, and cookie/CORS behavior — through the mspp_sitesetting records that drive them, then verify the live responses. WHEN: configure security headers, add or fix a Content Security Policy, set CSP on a portal, add X-Frame-Options / HSTS / nosniff, fix CSP errors, harden browser headers, clickjacking protection, cookie SameSite, manage-headers, why is my portal missing security headers."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,11 +9,11 @@ metadata:
 
 # Security headers & CSP on a Power Pages site
 
-Configure the **security response headers** a traditional (enhanced-data-model, `mspp_*`) Power
+Configure the **security response headers** a non-SPA (enhanced-data-model, `mspp_*`) Power
 Pages site sends to browsers — driven by **`mspp_sitesetting`** records — then verify the live
 responses carry them. This is the header/CSP layer referenced by `pp-securityreview` (check #5).
 
-> Read `../../references/traditional-site-editing-model.md` first. Headers are **site settings**, so
+> Read `../../references/non-spa-site-editing-model.md` first. Headers are **site settings**, so
 > the loop is: read the current settings → set/patch the `mspp_value` → flush cache → confirm
 > the header on a live response.
 

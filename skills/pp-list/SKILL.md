@@ -1,6 +1,6 @@
 ---
 name: pp-list
-description: "Create, edit, and delete lists (mspp_entitylist) on a traditional (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — a no-code grid of Dataverse records from one or more saved views, with the full surface: attributes (views, page size, details page), Grid Configuration Options (view + item actions Create/Download/Details/Edit/Delete/Workflow, override columns, dialogs, messages, CSS), filters (my/account, search), alternate views (map, calendar, modern list), custom scripting via the list web template, the deprecated OData feed vs the Web API, and AI features (natural-language search, AI list summary). WHEN: add a list, portal list/grid, entity list, mspp_entitylist, show Dataverse records on a page, list actions create/edit/delete/download, map view, calendar view, modern list, filter a list, search a list, natural language search, AI list summary, OData feed, wire a list to a details/create form."
+description: "Create, edit, and delete lists (mspp_entitylist) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — a no-code grid of Dataverse records from one or more saved views, with the full surface: attributes (views, page size, details page), Grid Configuration Options (view + item actions Create/Download/Details/Edit/Delete/Workflow, override columns, dialogs, messages, CSS), filters (my/account, search), alternate views (map, calendar, modern list), custom scripting via the list web template, the deprecated OData feed vs the Web API, and AI features (natural-language search, AI list summary). WHEN: add a list, portal list/grid, entity list, mspp_entitylist, show Dataverse records on a page, list actions create/edit/delete/download, map view, calendar view, modern list, filter a list, search a list, natural language search, AI list summary, OData feed, wire a list to a details/create form."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,12 +9,12 @@ metadata:
 
 # Lists on a Power Pages site — full configuration
 
-Manage **lists** (`mspp_entitylist`) on a traditional (enhanced-data-model, `mspp_*`) Power Pages
+Manage **lists** (`mspp_entitylist`) on a non-SPA (enhanced-data-model, `mspp_*`) Power Pages
 site through the Dataverse Web API. A list is a **no-code grid** of Dataverse records built from
 one or more **Dataverse saved views** (`savedquery`), with sorting, paging, search, filters,
 row/toolbar actions, and alternate renderings (map, calendar, modern list).
 
-> Read `../../references/traditional-site-editing-model.md` first. Core columns live on
+> Read `../../references/non-spa-site-editing-model.md` first. Core columns live on
 > `mspp_entitylist`; actions/dialogs/overrides live in the **Options / Grid Configuration** JSON
 > on the list; map & calendar views are their own config tabs. Column logical names mirror legacy
 > `adx_entitylist`; **read an existing list first** and copy names/shapes.

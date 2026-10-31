@@ -1,6 +1,6 @@
 ---
 name: pp-pagetemplate
-description: "Create, edit, and delete page templates (mspp_pagetemplate) on a traditional (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API. A page template is the required link between a web page and the WEB TEMPLATE (Liquid layout) it renders in — every mspp_webpage binds mspp_pagetemplateid, so a page can't exist without one. Covers the Web Template type (modern), header/footer toggle, the default template, and an optional bound table. WHEN: create a page template, add a new layout for pages, why must a page have a page template, link a web template to pages, set the default page template, change which layout a page uses, manage mspp_pagetemplate, make a full-width or landing-page template, page template vs web template."
+description: "Create, edit, and delete page templates (mspp_pagetemplate) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API. A page template is the required link between a web page and the WEB TEMPLATE (Liquid layout) it renders in — every mspp_webpage binds mspp_pagetemplateid, so a page can't exist without one. Covers the Web Template type (modern), header/footer toggle, the default template, and an optional bound table. WHEN: create a page template, add a new layout for pages, why must a page have a page template, link a web template to pages, set the default page template, change which layout a page uses, manage mspp_pagetemplate, make a full-width or landing-page template, page template vs web template."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,13 +9,13 @@ metadata:
 
 # Page templates on a Power Pages site — create, edit, delete
 
-Manage **page templates** (`mspp_pagetemplate`) on a traditional (enhanced-data-model, `mspp_*`)
+Manage **page templates** (`mspp_pagetemplate`) on a non-SPA (enhanced-data-model, `mspp_*`)
 Power Pages site through the Dataverse Web API. A page template is the **required link** between
 a **web page** and the **web template** (Liquid layout) that renders it — every `mspp_webpage`
 binds `mspp_pagetemplateid`, so **you can't create a page without a page template** (that's why
 `pp-webpage` reuses an existing one).
 
-> Read `../../references/traditional-site-editing-model.md` first. Know the three-link chain:
+> Read `../../references/non-spa-site-editing-model.md` first. Know the three-link chain:
 >
 > **web page** (`mspp_webpage`) → **page template** (`mspp_pagetemplate`) → **web template**
 > (`mspp_webtemplate`, the Liquid layout).
@@ -32,7 +32,7 @@ A page template is a `powerpagecomponent`-family virtual table (`mspp_pagetempla
 | Column | Holds |
 |---|---|
 | `mspp_name` | The template's name (what makers pick in the page's settings). |
-| `mspp_type` | **Web Template** (modern) vs **Rewrite** (legacy ASPX). New traditional sites use Web Template. |
+| `mspp_type` | **Web Template** (modern) vs **Rewrite** (legacy ASPX). New non-SPA sites use Web Template. |
 | `mspp_webtemplateid` | Lookup → the `mspp_webtemplate` (Liquid layout) rendered — used when type = Web Template. |
 | `mspp_usewebsiteheaderandfooter` | Wrap the layout in the site's shared header/footer (typical `true`), or a standalone shell (`false`). |
 | `mspp_isdefault` | Whether this is the site's default page template. Exactly one default per site. |

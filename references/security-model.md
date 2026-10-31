@@ -1,6 +1,6 @@
 # Power Pages security model (deny-by-default)
 
-Shared reference for the traditional-site (enhanced-data-model) authorization model. Used by
+Shared reference for the non-SPA site (enhanced-data-model) authorization model. Used by
 `pp-securityreview`, `pp-tablepermission`, `pp-columnpermission`, `pp-webrole`, `pp-pageaccessrule`,
 `pp-webapi`, and the `security-auditor` agent.
 

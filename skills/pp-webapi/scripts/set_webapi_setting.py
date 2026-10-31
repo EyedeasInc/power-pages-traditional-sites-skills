@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Enable the Power Pages Web API for one Dataverse table on a traditional (mspp_*) site.
+"""Enable the Power Pages Web API for one Dataverse table on a non-SPA (mspp_*) site.
 
 Idempotently creates/updates the two site settings that expose <table> to /_api/*:
   Webapi/<table>/enabled  = true

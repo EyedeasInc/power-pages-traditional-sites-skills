@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Safely edit a web template (powerpagecomponent type 8) on a traditional Power Pages site.
+"""Safely edit a web template (powerpagecomponent type 8) on a non-SPA Power Pages site.
 
 The Liquid/HTML lives in the component's `content` column, which is a JSON string
 {"source": "<liquid/html>", "mimetype": ...}. This tool GETs the LIVE component, parses that

@@ -1,6 +1,6 @@
 ---
 name: pp-upload
-description: "Upload a traditional Power Pages site's content from a local folder to a Dataverse environment with the pac pages upload CLI — the bulk push tool for promoting a site across environments (dev → test → prod), using deployment profiles for per-environment values. WHEN: upload a Power Pages site, deploy portal content, promote a site to another environment, push the site folder to Dataverse, pac pages upload, publish downloaded site content, apply a deployment profile, force upload all site content, move a portal from dev to prod."
+description: "Upload a non-SPA Power Pages site's content from a local folder to a Dataverse environment with the pac pages upload CLI — the bulk push tool for promoting a site across environments (dev → test → prod), using deployment profiles for per-environment values. WHEN: upload a Power Pages site, deploy portal content, promote a site to another environment, push the site folder to Dataverse, pac pages upload, publish downloaded site content, apply a deployment profile, force upload all site content, move a portal from dev to prod."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,7 +9,7 @@ metadata:
 
 # Upload a Power Pages site's content to an environment
 
-Push a traditional (enhanced-data-model, `mspp_*`) Power Pages site from a local folder into a
+Push a non-SPA (enhanced-data-model, `mspp_*`) Power Pages site from a local folder into a
 Dataverse environment with **`pac pages upload`**. This is the **bulk** promotion tool — the
 counterpart to `pp-download` — for moving a whole site (or its changed content) **across
 environments**: dev → test → prod.

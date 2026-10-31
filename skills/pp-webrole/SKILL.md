@@ -1,6 +1,6 @@
 ---
 name: pp-webrole
-description: "Create, edit, and delete web roles (mspp_webrole) on a traditional (enhanced-data-model, mspp_*) Power Pages site — the access groups that table permissions, web page access rules, and cloud-flow/Web API access bind to. Covers the two special auto-managed roles (Anonymous Users, Authenticated Users — exactly one each) and custom roles, plus assigning a role to a contact. WHEN: create a web role, add a portal role, set up user roles, manage mspp_webrole, make a members-only or admin role, assign a contact to a web role, why is my table permission not applying (no role bound), anonymous vs authenticated role, delete a web role."
+description: "Create, edit, and delete web roles (mspp_webrole) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site — the access groups that table permissions, web page access rules, and cloud-flow/Web API access bind to. Covers the two special auto-managed roles (Anonymous Users, Authenticated Users — exactly one each) and custom roles, plus assigning a role to a contact. WHEN: create a web role, add a portal role, set up user roles, manage mspp_webrole, make a members-only or admin role, assign a contact to a web role, why is my table permission not applying (no role bound), anonymous vs authenticated role, delete a web role."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,12 +9,12 @@ metadata:
 
 # Web roles on a Power Pages site — create, assign, manage
 
-Manage **web roles** (`mspp_webrole`) on a traditional (enhanced-data-model, `mspp_*`) Power
+Manage **web roles** (`mspp_webrole`) on a non-SPA (enhanced-data-model, `mspp_*`) Power
 Pages site through the Dataverse Web API. A web role is the **access group** that everything
 else binds to — table permissions (`pp-tablepermission`), web page access control rules,
 cloud-flow access, Web API reads. Without a role, a permission grants nothing.
 
-> Read `../../references/traditional-site-editing-model.md` first. This skill creates and manages the
+> Read `../../references/non-spa-site-editing-model.md` first. This skill creates and manages the
 > roles; **binding** a role to a table permission is `pp-tablepermission` (the
 > `mspp_entitypermission_webrole` intersect).
 

@@ -1,6 +1,6 @@
 ---
 name: pp-multistepform
-description: "Create, edit, and delete multistep forms (mspp_webform + mspp_webformstep + mspp_webformmetadata) on a traditional (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — a multi-page wizard that builds a record across steps, with the full surface: form-level properties (auth, session persistence, edit-expiry), progress indicator, step types (Load Form / Load Tab / Condition / Redirect) and branching, per-step metadata (control styles, prepopulate, set-value-on-save, validation), notes/file attachments, custom JavaScript, and AI form-fill. WHEN: add a multistep form, create a wizard, multi-page portal form, web form, mspp_webform, add/branch a form step, conditional navigation, progress bar, edit-expiry, prefill or validate a step field, file upload in a wizard, custom validation, render with Liquid webform."
+description: "Create, edit, and delete multistep forms (mspp_webform + mspp_webformstep + mspp_webformmetadata) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — a multi-page wizard that builds a record across steps, with the full surface: form-level properties (auth, session persistence, edit-expiry), progress indicator, step types (Load Form / Load Tab / Condition / Redirect) and branching, per-step metadata (control styles, prepopulate, set-value-on-save, validation), notes/file attachments, custom JavaScript, and AI form-fill. WHEN: add a multistep form, create a wizard, multi-page portal form, web form, mspp_webform, add/branch a form step, conditional navigation, progress bar, edit-expiry, prefill or validate a step field, file upload in a wizard, custom validation, render with Liquid webform."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -10,11 +10,11 @@ metadata:
 # Multistep forms (wizards) on a Power Pages site — full configuration
 
 Manage **multistep forms** (`mspp_webform`, its `mspp_webformstep` steps, and per-field
-`mspp_webformmetadata`) on a traditional (enhanced-data-model, `mspp_*`) Power Pages site through
+`mspp_webformmetadata`) on a non-SPA (enhanced-data-model, `mspp_*`) Power Pages site through
 the Dataverse Web API. A multistep form is a **wizard** that builds a record across steps with
 **conditional branching** — for applications, registrations, and long intake flows.
 
-> Read `../../references/traditional-site-editing-model.md` first. Structure: one **`mspp_webform`**
+> Read `../../references/non-spa-site-editing-model.md` first. Structure: one **`mspp_webform`**
 > (form-level properties + progress bar) → an ordered chain of **`mspp_webformstep`** rows (Load
 > Form / Load Tab / Condition / Redirect) → optional **`mspp_webformmetadata`** per-field
 > overrides on a step. Use a multistep form only when you truly need multiple steps — a single

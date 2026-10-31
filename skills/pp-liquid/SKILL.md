@@ -1,6 +1,6 @@
 ---
 name: pp-liquid
-description: "Write correct, safe Liquid in web templates and page content on a traditional (enhanced-data-model, mspp_*) Power Pages site — FetchXML queries, rendering Dataverse data, calling the Web API, and the common Liquid objects. Covers the nil-vs-blank trap that breaks empty-result checks and the escaping needed to stop stored XSS. WHEN: write Liquid, fix Liquid template logic, fetchxml in Power Pages, check if a query returned rows, nil vs blank, render Dataverse data on a portal page, liquid escaping, loop entity results, call the Web API from a Liquid page, entitylist loop, guard an empty FetchXML result."
+description: "Write correct, safe Liquid in web templates and page content on a non-SPA (enhanced-data-model, mspp_*) Power Pages site — FetchXML queries, rendering Dataverse data, calling the Web API, and the common Liquid objects. Covers the nil-vs-blank trap that breaks empty-result checks and the escaping needed to stop stored XSS. WHEN: write Liquid, fix Liquid template logic, fetchxml in Power Pages, check if a query returned rows, nil vs blank, render Dataverse data on a portal page, liquid escaping, loop entity results, call the Web API from a Liquid page, entitylist loop, guard an empty FetchXML result."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,14 +9,14 @@ metadata:
 
 # Write correct, safe Liquid on a Power Pages site
 
-Liquid runs **server-side** when a traditional Power Pages page renders — inside a web template
+Liquid runs **server-side** when a non-SPA Power Pages page renders — inside a web template
 (`powerpagecomponent` type 8), a content web page's `mspp_copy`, or a content snippet. It reads
 Dataverse through Liquid tags and objects, then emits HTML. This skill covers the non-obvious
 parts: an empty-result test that silently lies, escaping that stops stored XSS, and the one
 correct way to call the Web API.
 
 > Editing model (where these live, how to PATCH them back, cache-flush): see
-> `../../references/traditional-site-editing-model.md`. This skill is about the **Liquid you write**,
+> `../../references/non-spa-site-editing-model.md`. This skill is about the **Liquid you write**,
 > not how you push it.
 
 Copy-paste snippets for every pattern below live in **`references/liquid-patterns.md`**.

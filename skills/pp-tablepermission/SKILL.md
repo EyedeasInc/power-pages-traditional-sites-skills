@@ -1,6 +1,6 @@
 ---
 name: pp-tablepermission
-description: "Configure table permissions (mspp_entitypermission) on a traditional (enhanced-data-model, mspp_*) Power Pages site and bind them to web roles so portal users can read/write Dataverse records. A permission grants CRUD scope on a table; it does NOTHING until it is bound to a web role via the mspp_entitypermission_webrole many-to-many intersect. WHEN: set up table permissions, grant portal CRUD access, bind a permission to a web role, fix portal 403/empty data, configure entity permission, verify web role bindings, give a web role read/create/write/delete on a table, scope records to the signed-in contact."
+description: "Configure table permissions (mspp_entitypermission) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site and bind them to web roles so portal users can read/write Dataverse records. A permission grants CRUD scope on a table; it does NOTHING until it is bound to a web role via the mspp_entitypermission_webrole many-to-many intersect. WHEN: set up table permissions, grant portal CRUD access, bind a permission to a web role, fix portal 403/empty data, configure entity permission, verify web role bindings, give a web role read/create/write/delete on a table, scope records to the signed-in contact."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -12,7 +12,7 @@ metadata:
 On an **enhanced-data-model** site, portal access to Dataverse records is governed by
 **table permissions** (`mspp_entitypermission`). Configure them by writing Dataverse records
 directly — no front-end code. Read the shared
-[`../../references/traditional-site-editing-model.md`](../../references/traditional-site-editing-model.md)
+[`../../references/non-spa-site-editing-model.md`](../../references/non-spa-site-editing-model.md)
 first; this skill assumes it.
 
 > Table permissions are a **first-class `mspp_*` table** (per the backbone's rule: dedicated

@@ -45,7 +45,7 @@ API_VERSION = "v9.2"
 
 
 # --------------------------------------------------------------------------- #
-# Auth (shared pattern — see references/traditional-site-editing-model.md)
+# Auth (shared pattern — see references/non-spa-site-editing-model.md)
 # --------------------------------------------------------------------------- #
 def get_token():
     # 1) a workspace scripts/auth.py exposing get_token() (the dv-connect pattern)

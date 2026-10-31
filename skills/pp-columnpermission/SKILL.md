@@ -1,6 +1,6 @@
 ---
 name: pp-columnpermission
-description: "Create, edit, and delete column-level security (mspp_columnpermissionprofile + mspp_columnpermission) on a traditional (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — restrict read/update/create on specific COLUMNS of a table within a table permission, bound to web roles, so a role can see/edit a table but not sensitive fields on it. Extends pp-tablepermission. WHEN: restrict a column on the portal, column-level security, hide a field from a web role, mspp_columnpermission, column permission profile, allow read but not edit on a field, protect sensitive columns, field-level portal security, extend a table permission to specific columns."
+description: "Create, edit, and delete column-level security (mspp_columnpermissionprofile + mspp_columnpermission) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — restrict read/update/create on specific COLUMNS of a table within a table permission, bound to web roles, so a role can see/edit a table but not sensitive fields on it. Extends pp-tablepermission. WHEN: restrict a column on the portal, column-level security, hide a field from a web role, mspp_columnpermission, column permission profile, allow read but not edit on a field, protect sensitive columns, field-level portal security, extend a table permission to specific columns."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -10,11 +10,11 @@ metadata:
 # Column-level security on a Power Pages site — create, edit, delete
 
 Manage **column permissions** (`mspp_columnpermissionprofile` + `mspp_columnpermission`) on a
-traditional (enhanced-data-model, `mspp_*`) Power Pages site through the Dataverse Web API.
+non-SPA (enhanced-data-model, `mspp_*`) Power Pages site through the Dataverse Web API.
 Column permissions restrict **read / update / create on specific columns** of a table *within* a
 table permission — so a web role can access a table but **not** its sensitive fields.
 
-> Read `../../references/traditional-site-editing-model.md` first. This **extends `pp-tablepermission`**:
+> Read `../../references/non-spa-site-editing-model.md` first. This **extends `pp-tablepermission`**:
 > a column-permission **profile** hangs off a table permission (`mspp_entitypermission`) and is
 > bound to **web roles**; each **column permission** in the profile sets per-column rights.
 > Without a profile, a table permission exposes **every** readable column.

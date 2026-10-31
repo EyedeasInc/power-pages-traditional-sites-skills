@@ -1,6 +1,6 @@
 ---
 name: pp-redirect
-description: "Create, edit, and delete URL redirects (mspp_redirect) on a traditional (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — map an old/inbound URL to a target (a web page, a site marker, or an external URL) with a 301/302 status, so renamed or moved pages and vanity URLs keep resolving. WHEN: add a redirect, redirect an old URL, mspp_redirect, 301 redirect on the portal, vanity URL, forward a moved page, set up URL forwarding, fix broken inbound links after a page rename, redirect to an external site."
+description: "Create, edit, and delete URL redirects (mspp_redirect) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — map an old/inbound URL to a target (a web page, a site marker, or an external URL) with a 301/302 status, so renamed or moved pages and vanity URLs keep resolving. WHEN: add a redirect, redirect an old URL, mspp_redirect, 301 redirect on the portal, vanity URL, forward a moved page, set up URL forwarding, fix broken inbound links after a page rename, redirect to an external site."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,12 +9,12 @@ metadata:
 
 # URL redirects on a Power Pages site — create, edit, delete
 
-Manage **URL redirects** (`mspp_redirect`) on a traditional (enhanced-data-model, `mspp_*`) Power
+Manage **URL redirects** (`mspp_redirect`) on a non-SPA (enhanced-data-model, `mspp_*`) Power
 Pages site through the Dataverse Web API. A redirect maps an **inbound URL** to a **target** — a
 web page, a site marker, or an external URL — with a **301/302** status, so renamed/moved pages
 and vanity URLs keep resolving instead of 404ing.
 
-> Read `../../references/traditional-site-editing-model.md` first. A redirect targets exactly one of:
+> Read `../../references/non-spa-site-editing-model.md` first. A redirect targets exactly one of:
 > a web page, a `pp-sitemarker`, or an external URL. Prefer marker/page targets so the redirect
 > survives later URL changes.
 

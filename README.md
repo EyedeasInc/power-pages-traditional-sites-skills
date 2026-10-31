@@ -1,17 +1,25 @@
-# Power Pages Traditional-site toolkit (Claude Code & GitHub Copilot plugin)
+# Power Pages non-SPA site toolkit (Claude Code & GitHub Copilot plugin)
 
-Skills for **provisioning**, building, integrating, and **securing** traditional **Power Pages** sites —
+Skills for **provisioning**, building, integrating, and **securing** non-SPA **Power Pages** sites —
 the Dataverse-backed Studio/Liquid sites on the **enhanced data model** (`mspp_*` tables +
-`powerpagecomponent`). This is the traditional-site counterpart to Microsoft's
-[code-site plugin](https://github.com/microsoft/power-platform-skills/blob/main/plugins/power-pages/README.md):
-it covers the classic, non-code portals that plugin doesn't.
+`powerpagecomponent`). This is a community companion to Microsoft's
+[Power Pages plugin](https://github.com/microsoft/power-platform-skills/blob/main/plugins/power-pages/README.md).
+Since version 3.0.0, Microsoft's plugin creates, edits and scans non-SPA sites itself (`/create-site`,
+`/edit-site`, `/analyze-performance`, in preview). Use it to start and reshape a site; use these `pp-*`
+skills to work record by record, including the basic forms, lists, multistep forms, web roles and
+table, column and page permissions that Microsoft's non-SPA workflow does not build.
+
+> **Renamed in 0.10.0.** This plugin was `powerpages-traditional-site` in the
+> `power-pages-traditional-sites-skills` repo. Microsoft now calls these sites non-SPA, so the plugin is
+> `powerpages-non-spa-site` and the repo is `power-pages-non-spa-sites-skills`. Old GitHub URLs redirect,
+> but the plugin ID changed: uninstall the old plugin and install the new one (see Install).
 
 > Community-authored, led by [Zero to Hero](https://fromzerotoheroes.com). Not a Microsoft
 > product. Built on the documented Dataverse Web API + `pac` CLI surface for enhanced-data-model
 > sites.
 
 > Every content skill assumes the shared backbone in
-> [`references/traditional-site-editing-model.md`](references/traditional-site-editing-model.md) —
+> [`references/non-spa-site-editing-model.md`](references/non-spa-site-editing-model.md) —
 > the component storage model, the read-live-first rule, the robust-parse / PATCH technique, the
 > shared auth pattern, and the cache-flush rule. Read it first.
 
@@ -85,20 +93,20 @@ One repo, one manifest (`.claude-plugin/plugin.json`), read by both Claude Code 
 ### Claude Code
 
 ```text
-/plugin marketplace add EyedeasInc/power-pages-traditional-sites-skills
-/plugin install powerpages-traditional-site@powerpages-traditional-site
+/plugin marketplace add EyedeasInc/power-pages-non-spa-sites-skills
+/plugin install powerpages-non-spa-site@powerpages-non-spa-site
 ```
 
-Or from a local clone: `/plugin marketplace add /path/to/power-pages-traditional-sites-skills`.
+Or from a local clone: `/plugin marketplace add /path/to/power-pages-non-spa-sites-skills`.
 
 ### GitHub Copilot CLI
 
 ```bash
-copilot plugin install EyedeasInc/power-pages-traditional-sites-skills
+copilot plugin install EyedeasInc/power-pages-non-spa-sites-skills
 ```
 
-Or via the marketplace: `copilot plugin marketplace add EyedeasInc/power-pages-traditional-sites-skills`,
-then `copilot plugin install powerpages-traditional-site@powerpages-traditional-site`.
+Or via the marketplace: `copilot plugin marketplace add EyedeasInc/power-pages-non-spa-sites-skills`,
+then `copilot plugin install powerpages-non-spa-site@powerpages-non-spa-site`.
 After pulling changes, reinstall to refresh Copilot's plugin cache.
 
 ### GitHub Copilot in VS Code (agent plugins, Preview)
@@ -107,7 +115,7 @@ Add the repo as a plugin marketplace in `settings.json`, then install it from th
 (`@agentPlugins`) or **Chat: Plugins**:
 
 ```json
-"chat.plugins.marketplaces": ["EyedeasInc/power-pages-traditional-sites-skills"]
+"chat.plugins.marketplaces": ["EyedeasInc/power-pages-non-spa-sites-skills"]
 ```
 
 Or run **Chat: Install Plugin From Source** with the repo URL. Plugins installed with the Copilot CLI
@@ -143,7 +151,7 @@ Invoke a skill by name (e.g. `/pp-webtemplate`) or just describe the task
 ## Layout
 
 ```
-powerpages-traditional-site/
+powerpages-non-spa-site/
 ├─ .claude-plugin/
 │  ├─ plugin.json                      # plugin manifest (Claude Code + Copilot)
 │  └─ marketplace.json                 # single-plugin marketplace
@@ -154,7 +162,7 @@ powerpages-traditional-site/
 │  ├─ hooks.json                       # PostToolUse(Skill) → cache/permission reminder
 │  └─ skill_reminder.py
 ├─ references/                         # shared knowledge (MS Learn + community, cited)
-│  ├─ traditional-site-editing-model.md   # shared backbone (read first)
+│  ├─ non-spa-site-editing-model.md   # shared backbone (read first)
 │  ├─ webapi-field-configuration.md
 │  ├─ security-model.md
 │  ├─ web-template-components.md
@@ -177,7 +185,7 @@ powerpages-traditional-site/
 - **Agents** (`agents/`) — read-only specialists a skill can spawn for a focused, isolated job:
   `security-auditor` (deep security audit, from `pp-securityreview`) and `web-template-architect`
   (reusable-component / Liquid design, from `pp-webtemplate` / `pp-webpage` / `pp-pagetemplate`).
-  In Claude Code they appear as `powerpages-traditional-site:security-auditor`; in Copilot, pick them
+  In Claude Code they appear as `powerpages-non-spa-site:security-auditor`; in Copilot, pick them
   from the agent list (`/agent`).
 - **Hooks** (`hooks/`) — a `PostToolUse` reminder (Claude-format hooks, also honored by Copilot) that, after a content-mutating `pp-*` skill,
   nudges you to flush the portal cache (`/pp-cache`) and confirm table permissions + web roles.

@@ -1,6 +1,6 @@
 ---
 name: pp-download
-description: "Download a traditional Power Pages site's content to disk with the pac pages download (or clone) CLI — for backup, diff, offline inspection, and source control. Pulls the enhanced-data-model (mspp_*) site content as YAML/files; supports scoping by entity and overwriting. A download is a point-in-time SNAPSHOT — inspect and version it, but never patch a live component from it (the live skills read live for a reason). WHEN: download a Power Pages site, back up a portal, pull site content to disk, export the site for source control, diff a portal, clone a Power Pages site, pac pages download, get a local copy of the site, snapshot the portal before a change."
+description: "Download a non-SPA Power Pages site's content to disk with the pac pages download (or clone) CLI — for backup, diff, offline inspection, and source control. Pulls the enhanced-data-model (mspp_*) site content as YAML/files; supports scoping by entity and overwriting. A download is a point-in-time SNAPSHOT — inspect and version it, but never patch a live component from it (the live skills read live for a reason). WHEN: download a Power Pages site, back up a portal, pull site content to disk, export the site for source control, diff a portal, clone a Power Pages site, pac pages download, get a local copy of the site, snapshot the portal before a change."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,7 +9,7 @@ metadata:
 
 # Download a Power Pages site's content to disk
 
-Pull a traditional (enhanced-data-model, `mspp_*`) Power Pages site's content to a local folder
+Pull a non-SPA (enhanced-data-model, `mspp_*`) Power Pages site's content to a local folder
 with **`pac pages download`** — for **backup**, **diff**, **offline inspection**, and **source
 control**. Use `pac pages clone` to copy already-downloaded content into a new working folder.
 

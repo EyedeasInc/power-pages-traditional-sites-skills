@@ -1,6 +1,6 @@
 ---
 name: pp-pageaccessrule
-description: "Create, edit, and delete web page access control rules (mspp_webpageaccesscontrolrule) on a traditional (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — page-level authorization that grants or restricts access to a web page (and its child pages) for specific web roles, independent of table permissions. WHEN: restrict a page to a web role, make a page members-only, page-level security, mspp_webpageaccesscontrolrule, grant change/edit rights on a page, hide a page from anonymous users, control who can see a page, page access control rule, bind a page rule to a role."
+description: "Create, edit, and delete web page access control rules (mspp_webpageaccesscontrolrule) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site through the Dataverse Web API — page-level authorization that grants or restricts access to a web page (and its child pages) for specific web roles, independent of table permissions. WHEN: restrict a page to a web role, make a page members-only, page-level security, mspp_webpageaccesscontrolrule, grant change/edit rights on a page, hide a page from anonymous users, control who can see a page, page access control rule, bind a page rule to a role."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,13 +9,13 @@ metadata:
 
 # Web page access control rules — create, edit, delete
 
-Manage **web page access control rules** (`mspp_webpageaccesscontrolrule`) on a traditional
+Manage **web page access control rules** (`mspp_webpageaccesscontrolrule`) on a non-SPA
 (enhanced-data-model, `mspp_*`) Power Pages site through the Dataverse Web API. A page access rule
 is **page-level authorization** — it grants or restricts access to a web page (and, by scope, its
 descendants) for specific **web roles**. This is distinct from table permissions
 (`pp-tablepermission`), which gate *data*; this gates *pages*.
 
-> Read `../../references/traditional-site-editing-model.md` first. A rule targets a **root** web page,
+> Read `../../references/non-spa-site-editing-model.md` first. A rule targets a **root** web page,
 > declares a **right** (restrict read / grant change) and a **scope**, and is **bound to web
 > roles** via an intersect. `pp-securityreview` check #4 (anonymous access) inspects exactly
 > these rules; `pp-webrole` creates the roles they bind.

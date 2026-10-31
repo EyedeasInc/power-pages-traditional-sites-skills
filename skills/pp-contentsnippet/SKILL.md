@@ -1,6 +1,6 @@
 ---
 name: pp-contentsnippet
-description: "Create, edit, and delete content snippets (mspp_contentsnippet) on a traditional (enhanced-data-model, mspp_*) Power Pages site — the named, reusable, localizable text/HTML blocks that templates and pages pull in via Liquid ({{ snippets[\"Name\"] }} / {% editable snippets %}) — through the Dataverse Web API. WHEN: add a content snippet, edit portal text, change a reusable text block, update the homepage hero copy, create an HTML snippet, localize a snippet, edit mspp_contentsnippet, change footer/banner text without touching a template, manage editable content blocks."
+description: "Create, edit, and delete content snippets (mspp_contentsnippet) on a non-SPA (enhanced-data-model, mspp_*) Power Pages site — the named, reusable, localizable text/HTML blocks that templates and pages pull in via Liquid ({{ snippets[\"Name\"] }} / {% editable snippets %}) — through the Dataverse Web API. WHEN: add a content snippet, edit portal text, change a reusable text block, update the homepage hero copy, create an HTML snippet, localize a snippet, edit mspp_contentsnippet, change footer/banner text without touching a template, manage editable content blocks."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,12 +9,12 @@ metadata:
 
 # Content snippets on a Power Pages site — create, edit, delete
 
-Manage **content snippets** (`mspp_contentsnippet`) on a traditional (enhanced-data-model,
+Manage **content snippets** (`mspp_contentsnippet`) on a non-SPA (enhanced-data-model,
 `mspp_*`) Power Pages site through the Dataverse Web API. A snippet is a **named, reusable,
 localizable** block of text or HTML that templates and pages pull in with Liquid — so editors
 change copy (hero text, banners, footers, CTAs) **without touching a web template**.
 
-> Read `../../references/traditional-site-editing-model.md` first. A snippet's value is edited on the
+> Read `../../references/non-spa-site-editing-model.md` first. A snippet's value is edited on the
 > `mspp_contentsnippet` record directly (not inside a `powerpagecomponent` JSON payload), then
 > the cache is flushed.
 

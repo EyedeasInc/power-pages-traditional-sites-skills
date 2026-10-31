@@ -1,5 +1,5 @@
 {
-  "description": "powerpages-traditional-site: after a content skill, remind about cache flush and table permissions",
+  "description": "powerpages-non-spa-site: after a content skill, remind about cache flush and table permissions",
   "hooks": {
     "PostToolUse": [
       {

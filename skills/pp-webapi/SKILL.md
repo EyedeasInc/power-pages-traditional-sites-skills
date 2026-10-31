@@ -1,6 +1,6 @@
 ---
 name: pp-webapi
-description: "Enable, consume, audit, and disable the Power Pages Web API (/_api/*) for a Dataverse table on a traditional (enhanced-data-model, mspp_*) site. Teaches the two Web API site settings (Webapi/<table>/enabled, Webapi/<table>/fields), least-field exposure with case-sensitive column LogicalNames, the mandatory webapi.safeAjax client wrapper (CSRF token), and that table permissions + web roles still gate every call. WHEN: enable the Power Pages Web API, expose a table to the portal /_api, add or edit web api site settings, audit or reduce Web API exposure, disable the Web API for a table, call Dataverse from a portal page, set Webapi fields, portal ajax to Dataverse, portal CRUD from a page, /_api file upload, safeAjax, __RequestVerificationToken, why does /_api return nothing or 403."
+description: "Enable, consume, audit, and disable the Power Pages Web API (/_api/*) for a Dataverse table on a non-SPA (enhanced-data-model, mspp_*) site. Teaches the two Web API site settings (Webapi/<table>/enabled, Webapi/<table>/fields), least-field exposure with case-sensitive column LogicalNames, the mandatory webapi.safeAjax client wrapper (CSRF token), and that table permissions + web roles still gate every call. WHEN: enable the Power Pages Web API, expose a table to the portal /_api, add or edit web api site settings, audit or reduce Web API exposure, disable the Web API for a table, call Dataverse from a portal page, set Webapi fields, portal ajax to Dataverse, portal CRUD from a page, /_api file upload, safeAjax, __RequestVerificationToken, why does /_api return nothing or 403."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -10,7 +10,7 @@ metadata:
 # The Power Pages Web API for a table — enable, consume, audit, disable
 
 The **Power Pages Web API** lets front-end JavaScript on a page read and write Dataverse
-records through same-origin `/_api/*` endpoints — no custom back end. On a **traditional
+records through same-origin `/_api/*` endpoints — no custom back end. On a **non-SPA
 (enhanced-data-model, `mspp_*`)** site you turn it on **per table** with two site-setting
 records, then call it from the page with the platform's `webapi.safeAjax` wrapper.
 

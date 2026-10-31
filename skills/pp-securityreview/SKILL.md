@@ -1,13 +1,13 @@
 ---
 name: pp-securityreview
-description: "Run a security review of a traditional (enhanced-data-model, mspp_*) Power Pages site, focused on the failure modes specific to this platform rather than generic web scanning — stored XSS in web templates and page JS that interpolates Dataverse fields raw, Web API column over-exposure, missing or over-broad table permissions, accidental anonymous access, weak security headers/CSP, Liquid data leaks, and secrets served to the browser. Produces a fill-in findings report. WHEN: security review a Power Pages site, audit portal security, check for portal XSS, review table permissions, find data exposure, portal security checklist, portal security audit, harden a Power Pages site, review web templates for XSS, check Web API exposure, review anonymous access, check CSP/security headers on a portal, run the platform security scan, start a quick or deep scan, get the security scan report or score, check or enable the Web Application Firewall (WAF)."
+description: "Run a security review of a non-SPA (enhanced-data-model, mspp_*) Power Pages site, focused on the failure modes specific to this platform rather than generic web scanning — stored XSS in web templates and page JS that interpolates Dataverse fields raw, Web API column over-exposure, missing or over-broad table permissions, accidental anonymous access, weak security headers/CSP, Liquid data leaks, and secrets served to the browser. Produces a fill-in findings report. WHEN: security review a Power Pages site, audit portal security, check for portal XSS, review table permissions, find data exposure, portal security checklist, portal security audit, harden a Power Pages site, review web templates for XSS, check Web API exposure, review anonymous access, check CSP/security headers on a portal, run the platform security scan, start a quick or deep scan, get the security scan report or score, check or enable the Web Application Firewall (WAF)."
 license: MIT
 metadata:
   author: Victor Dantas
   version: "0.1.0"
 ---
 
-# Security review — traditional Power Pages site
+# Security review — non-SPA Power Pages site
 
 Audit an **enhanced-data-model** (`mspp_*`) Power Pages site for the vulnerabilities that
 are *specific to this platform*: Dataverse data flowing into the browser through web
@@ -15,7 +15,7 @@ templates and page JS, and the Dataverse-side access controls (Web API settings,
 permissions, web roles) that gate it. This is not a generic web scanner — it targets the
 seams where portal content, Liquid, the Web API, and the security model meet.
 
-Read `../../references/traditional-site-editing-model.md` first (the shared backbone: the
+Read `../../references/non-spa-site-editing-model.md` first (the shared backbone: the
 component tables, "read live before you edit", cache flush). Then work the checklist in
 `references/review-checklist.md`, which has the exact query/inspection for each item, a
 severity, and a fix. Record findings in the report format at the end of this file.
@@ -243,5 +243,5 @@ Fixes are single-component live patches, not a site re-upload:
 ## Microsoft docs & shared references
 
 - Model is **deny-by-default**; **Global scope is anonymous-reachable only when bound to the Anonymous Users role**; from **June 2026** forms/lists enforce permissions regardless of the legacy "Enable Table Permissions" flag.
-- For a deep, isolated audit, spawn the **`powerpages-traditional-site:security-auditor`** agent.
+- For a deep, isolated audit, spawn the **`powerpages-non-spa-site:security-auditor`** agent.
 - Full detail: `../../references/security-model.md`, `../../references/webapi-field-configuration.md`.

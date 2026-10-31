@@ -9,13 +9,13 @@ metadata:
 
 # Refresh the Power Pages portal cache
 
-On a traditional (enhanced data model) Power Pages site, the running portal serves components
+On a non-SPA (enhanced data model) Power Pages site, the running portal serves components
 (web templates, web files, content snippets, site settings, table permissions, page access rules,
 web pages) from a **server-side cache**. When you PATCH a component in Dataverse, as every editing
 skill in this plugin does, the record changes at once but visitors keep seeing the **cached**
 version until the cache is refreshed.
 
-See `../../references/traditional-site-editing-model.md` for the editing model these changes come from.
+See `../../references/non-spa-site-editing-model.md` for the editing model these changes come from.
 
 ## When you need it
 

@@ -1,15 +1,15 @@
 ---
 name: pp-bootstrap-migrate
-description: "Migrate a traditional (Liquid) Power Pages site's markup from Bootstrap 3 to Bootstrap 5 using the pac pages bootstrap-migrate CLI engine, then fix the residual grid/navbar/card/page-header changes the engine can only flag. Non-destructive: the engine writes a new V5 copy of downloaded site content and never edits the source. WHEN: migrate Power Pages from Bootstrap 3 to Bootstrap 5, upgrade bootstrap on a portal, bootstrap v3 to v5, fix bootstrap classes on Liquid templates, pac pages bootstrap-migrate, modernize portal markup, my portal still uses Bootstrap 3."
+description: "Migrate a non-SPA (Liquid) Power Pages site's markup from Bootstrap 3 to Bootstrap 5 using the pac pages bootstrap-migrate CLI engine, then fix the residual grid/navbar/card/page-header changes the engine can only flag. Non-destructive: the engine writes a new V5 copy of downloaded site content and never edits the source. WHEN: migrate Power Pages from Bootstrap 3 to Bootstrap 5, upgrade bootstrap on a portal, bootstrap v3 to v5, fix bootstrap classes on Liquid templates, pac pages bootstrap-migrate, modernize portal markup, my portal still uses Bootstrap 3."
 license: MIT
 metadata:
   author: Victor Dantas
   version: "0.1.0"
 ---
 
-# Bootstrap 3 → 5 migration for a traditional Power Pages site
+# Bootstrap 3 → 5 migration for a non-SPA Power Pages site
 
-Upgrade the markup of a **traditional (Liquid) Power Pages** site from **Bootstrap 3** to
+Upgrade the markup of a **non-SPA (Liquid) Power Pages** site from **Bootstrap 3** to
 **Bootstrap 5** with the **`pac pages bootstrap-migrate`** engine. The engine does the bulk,
 mechanical class renames across downloaded site content; you then handle the structural changes
 it can only flag (grid, navbar, panel→card, page-header).
@@ -73,6 +73,6 @@ and verify pages render — spot-check the navbar, grid, and any cards first.
 
 - **Non-destructive engine** — the source folder is untouched; review the `V5` diff before you
   upload, and keep the pre-migration download as a rollback.
-- Traditional/Liquid sites only. (Code sites don't use this — they own their own CSS build.)
+- Non-SPA/Liquid sites only. (Code sites don't use this — they own their own CSS build.)
 - Budget time for the flagged residuals: the class renames are minutes; the navbar/grid
   structural fixes are where the real work is.

@@ -1,6 +1,6 @@
 # Liquid patterns — copy-paste cheat sheet
 
-Correct, safe snippets for traditional (enhanced-data-model, `mspp_*`) Power Pages sites.
+Correct, safe snippets for non-SPA (enhanced-data-model, `mspp_*`) Power Pages sites.
 Companion to `../SKILL.md`. Replace `mspp_product` / field names with your table's.
 
 ---

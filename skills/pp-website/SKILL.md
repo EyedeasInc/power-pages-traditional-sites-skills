@@ -1,6 +1,6 @@
 ---
 name: pp-website
-description: "Provision and run the Power Pages WEBSITE itself — the site record and its lifecycle — on a traditional (enhanced-data-model, mspp_*) site, using the pac power-pages CLI command group (Preview). Create a new website from a template, list and inspect sites, start / stop / restart, convert a trial to production, change site visibility and the security group, and delete a site. This is the site container; page/template/web-file CONTENT is authored with the other pp-* skills through the mspp_ model. WHEN: create a Power Pages website, provision a new portal, spin up a site, list my Power Pages sites, get a website id, start or stop or restart a portal, take a site offline, convert a trial site to production, change site visibility, set the site security group, delete a Power Pages website, pac power-pages, which template to use for a new site."
+description: "Provision and run the Power Pages WEBSITE itself — the site record and its lifecycle — on a non-SPA (enhanced-data-model, mspp_*) site, using the pac power-pages CLI command group (Preview). Create a new website from a template, list and inspect sites, start / stop / restart, convert a trial to production, change site visibility and the security group, and delete a site. This is the site container; page/template/web-file CONTENT is authored with the other pp-* skills through the mspp_ model. WHEN: create a Power Pages website, provision a new portal, spin up a site, list my Power Pages sites, get a website id, start or stop or restart a portal, take a site offline, convert a trial site to production, change site visibility, set the site security group, delete a Power Pages website, pac power-pages, which template to use for a new site."
 license: MIT
 metadata:
   author: Victor Dantas
@@ -9,7 +9,7 @@ metadata:
 
 # The Power Pages website itself — provision, run, retire
 
-Manage the **site container** on a traditional (enhanced-data-model, `mspp_*`) Power Pages
+Manage the **site container** on a non-SPA (enhanced-data-model, `mspp_*`) Power Pages
 site through the **`pac power-pages`** CLI command group (Preview). This is the layer *above*
 content: creating the website, listing and inspecting sites, starting/stopping/restarting,
 converting a trial to production, changing visibility, and deleting.
@@ -107,7 +107,7 @@ Required flags:
 >    once `packageInstallStatus` is `Installed`.
 
 **Template names** (`--template-name`). These are the Power Pages (blank/starter/scenario)
-templates the CLI accepts. Through `pac` they provision a traditional site, but check the data
+templates the CLI accepts. Through `pac` they provision a non-SPA site, but check the data
 model as described above:
 
 - Starter / blank: `StarterLayout1`…`StarterLayout5`, `BlankPage`, `DefaultPortalTemplate`
@@ -120,7 +120,7 @@ model as described above:
 Provisioning is **asynchronous** — the command triggers creation and returns; the site takes
 a few minutes to come up. Poll `get-websites` until it appears, then `get-website-by-id` for
 its URL and status (`status`, `dataModel`, `packageInstallStatus`, `websiteRecordId`). For a blank
-traditional site to start from, **Blank page** (`BlankPage`) or **Starter layout 1**
+non-SPA site to start from, **Blank page** (`BlankPage`) or **Starter layout 1**
 (`StarterLayout1`, aka `DefaultPortalTemplate`) is the usual pick. Create it from the home page to
 get the Enhanced model (see the warning above). Site subdomains are unique across all of Power
 Pages; suggest a name with the owner's initials when the obvious one is taken.
